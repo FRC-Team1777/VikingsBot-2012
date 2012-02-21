@@ -1,0 +1,114 @@
+==================================================
+  Team 1777 Viking Robotics
+==================================================
+
+NOTES:
+---------------
+
+* The bridge surface is ploycarb. HDPE is the material for the bridge "deck" which is below the polycarb surface.
+
+* New module ordering for 8-slot cRIO:
+	1 - Analog
+	2 - Digital
+	3 - Solenoid
+	4 - Empty
+	5 - Analog 2
+	6 - Digital 2
+	7 - Solenoid 2
+	8 - Empty
+
+* Another cause of this error is caused by the setup utility - Greg (of NI) confirmed that there was a problem with the camera setup utility that causes errors such as this. Set up the camera manually. Reset the camera by holding the button on the back and follow these steps:
+	1) Connect to the camera at http://192.168.0.90 (your ip address will need to be on the same domain)
+	2) The camera will ask you to create a root password - "admin" will work.
+	3) Log into the camera with root:admin
+	4) Using the setup page, add the user FRC, password FRC as admin.
+	5) If you're planning on using the Smart Dashboard, enable anonymous viewing
+	6) Change the IP address of the camera to 10.te.am.11
+	Once you save that last setting, you will not be able to connect to the camera. It should be set up at this point.
+
+	http://www.youtube.com/watch?v=HfLjgn67ArY&feature=related
+
+* Robots may not touch an opponent Robot in contact with its Key, Alley, or Bridge.
+
+* During Teleop, Inbounders may enter Basketballs back onto the Court by:
+	passing though the Inbound Slots at any time;
+	throwing over the Inbound Station during the final 30 seconds of Teleop.
+
+* 2 FIRST battries at 28", the bridge should stay balanced.
+
+* Sonar wiring:		--- http://www.maxbotix.com/articles/016.htm
+	Black	- GND
+	Red		- 5V
+	White	- AN
+
+* Use CAN Jaguars
+	http://team2168.org/index.php/resources/electrical/210-can-jaguars
+
+* Arm can use gyro to know when to retract.
+
+* Get speed for the shooter before shooting. Have a difference button to override.
+
+* Plug encoders in Digital I/O in Digital Sidecar.
+
+* 
+
+* 
+
+* 
+
+* 
+
+
+========================================================================================================
+|                                     TEAM 1777, VIKING ROBOTICS!                                      |
+========================================================================================================
+|   GAMEPAD AND JOYSTICK        ||   /  Y  \   ||  [pressed]  => When the button is pressed            |
+|    BUTTON AND AXIS            ||  | X + B |  ||  [held]     => When the button is held               |
+|     CONFIGURATION             ||   \  A  /   ||  [released] => When the button is released           |
+========================================================================================================
+	GamepadButtonA				=> [pressed] ShooterFeed(timeout)
+	GamepadButtonB				=> [pressed] GrabberRun()
+	GamepadButtonX				=> 
+	GamepadButtonY				=> 
+	GamepadButtonShoulderL		=> [pressed] ArmRun()
+	GamepadButtonShoulderR		=> [held] GrabberReverse()
+	GamepadButtonBack			=> reset gyro
+	GamepadButtonStart			=> [held] BalanceOnBridge()
+	GamepadButtonLeftStick		=> 
+	GamepadButtonRightStick		=> 
+	GamepadButtonMode			=> 
+	GamepadButtonLogitech		=> 
+	kJoystickTrigger			=> [pressed] ShooterFeed(timeout)
+	kJoystickThumb				=> 
+	kJoystickThumbBottomLeft	=> [pressed] ShooterMoveDown
+	kJoystickThumbBottomRight	=> [pressed] ArmRun()
+	kJoystickThumbTopLeft		=> [pressed] ShooterMoveUp
+	kJoystickThumbTopRight		=> 
+	kJoystickTopLeft			=> [held] BalanceOnBridge()
+	kJoystickTopRight			=> 
+	kJoystickMidLeft			=> [pressed] GrabberRun()
+	kJoystickMidRight			=> [held] GrabberReverse()
+	kJoystickBottomLeft			=> [pressed] ShooterRun()
+	kJoystickBottomRight		=> [pressed] ShooterStop()
+	------------------------------------------------------------------------------------------------
+	GamepadAxisLeftStickX       => none
+	GamepadAxisLeftStickY       => TankDrive - left
+	GamepadAxisTrigger          => 
+	GamepadAxisRightStickX      => none
+	GamepadAxisRightStickY      => TankDrive - right
+	GamepadAxisDpadX            => Shooter up and down
+	JoystickAxisX               => 
+	JoystickAxisY               => 
+	JoystickAxisZ               => 
+	JoystickAxisThrottle        => Shooter speed
+	JoystickAxisTopX            => 
+	JoystickAxisTopY            => 
+	Joystick2AxisThrottle       => Shooter speed
+========================================================================================================
+
+
+
+
+
+
+
