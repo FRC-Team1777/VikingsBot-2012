@@ -25,6 +25,7 @@ public class ArmLatch extends CommandBase {
 	}
 
 	protected void execute() {
+		arm.latch();
 	}
 
 	protected boolean isFinished() {
@@ -32,10 +33,12 @@ public class ArmLatch extends CommandBase {
 	}
 
 	protected void end() {
+		arm.stopLatch();
 	}
 
 	protected void interrupted() {
 		Debug.println("[interrupted] " + getName());
+		arm.stopLatch();
 	}
 
 }

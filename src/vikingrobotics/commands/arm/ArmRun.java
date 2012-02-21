@@ -13,7 +13,6 @@ public class ArmRun extends CommandGroup {
 		//addSequential(new ArmUnlatch());
 		addSequential(new ArmRetract(2.0));
 		addSequential(new ArmSet(0.2));
-		addSequential(new ArmCancel());
 	}
 	
 }

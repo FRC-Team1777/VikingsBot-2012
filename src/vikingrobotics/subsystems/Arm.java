@@ -41,6 +41,10 @@ public class Arm extends Subsystem {
 //		latcher.set(Relay.Value.kReverse);
 	}
 	
+	public void stopLatch() {
+//		latcher.set(Relay.Value.kOff);
+	}
+	
 	public double getSpeed() {
 		return this.speed;
 	}

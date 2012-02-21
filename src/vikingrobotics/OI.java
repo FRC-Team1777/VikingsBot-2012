@@ -78,7 +78,7 @@ public class OI implements Constants {
 		joystick2 = new Gamepad(RobotMap.kJoystick3);
 		cameraLED = new Relay(RobotMap.kCamLED);
 //		gyro = new Gyro(RobotMap.kGyroChannel);
-//		gyro.setSensitivity(0.005);
+//		gyro.setSensitivity(0.007);
 //		gyro.reset();
 		
 		SmartDashboard.putData("ResetGyro", buttonResetGyro);
