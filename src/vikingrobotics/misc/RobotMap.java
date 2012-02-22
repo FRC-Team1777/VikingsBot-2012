@@ -18,6 +18,8 @@ public class RobotMap {
 	// Motor used by the arm
 	public static final int kArmChannel = 5;
 	public static final int kArmLatchChannel = 2; // Relay
+	public static final int kArmSensorExtracted = 1;
+	public static final int kArmSensorRetracted = 2;
 
 	// Motor used by the ball grabber
 	public static final int kGrabberChannel = 6;

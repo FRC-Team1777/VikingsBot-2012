@@ -21,12 +21,9 @@ public class ShooterRun extends CommandBase implements Constants {
 		this.speed = speed;
 		this.hasSpeed = true;
 	}
-	
-	public void hasFinished(boolean finished) {
-		this.hasFinished = finished;
-	}
 
 	protected void initialize() {
+		Debug.println("[" + this.getName() + "] Speed: " + this.speed);
 		shooter.setSpeed(0.0);
 	}
 
@@ -51,6 +48,7 @@ public class ShooterRun extends CommandBase implements Constants {
 	}
 
 	protected void end() {
+		Debug.println("[" + this.getName() + "] Stopped");
 		shooter.stop();
 	}
 

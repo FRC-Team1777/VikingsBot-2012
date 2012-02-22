@@ -13,6 +13,7 @@ public class GrabberStop extends CommandBase {
 	}
 
 	protected void initialize() {
+		Debug.print("[" + this.getName() + "]");
 		hasFinished = false;
 	}
 
@@ -26,6 +27,7 @@ public class GrabberStop extends CommandBase {
 	}
 
 	protected void end() {
+		Debug.println("\t\tDONE");
 		grabber.stop();
 	}
 

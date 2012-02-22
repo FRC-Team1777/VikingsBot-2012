@@ -20,6 +20,11 @@ public class GrabberReverse extends CommandBase {
 	}
 
 	protected void initialize() {
+		Debug.print("[" + this.getName() + "] initialize");
+		if(hasTimeout) {
+			Debug.print("\tTimeout: " + timeout);
+			setTimeout(timeout);
+		}
 	}
 
 	protected void execute() {
@@ -31,6 +36,7 @@ public class GrabberReverse extends CommandBase {
 	}
 
 	protected void end() {
+		Debug.println("\t\tDONE");
 		grabber.stop();
 	}
 

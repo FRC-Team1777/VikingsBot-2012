@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Arm extends Subsystem {
 
-	private static double direction = 1;
+	private static double direction = -1;
 	private double speed = 0.1;
 	private Jaguar arm;
 	private Relay latcher;
@@ -25,11 +25,13 @@ public class Arm extends Subsystem {
 		arm = new Jaguar(RobotMap.kArmChannel);
 //		latcher = new Relay(RobotMap.kArmLatchChannel);
 		Debug.println("[robot] Initializing arm motor on channel " + RobotMap.kArmChannel);
-		sensorExtracted = new DigitalInput(1);
-		sensorRetracted = new DigitalInput(2);
+//		Debug.println("[robot] Initializing arm latch motor on relay " + RobotMap.kArmLatchChannel);
+		sensorExtracted = new DigitalInput(RobotMap.kArmSensorExtracted);
+		sensorRetracted = new DigitalInput(RobotMap.kArmSensorRetracted);
 	}
 	
 	public void initDefaultCommand() {
+		// Don't want to do this unless emergency/testing
 //		setDefaultCommand(new ArmManual());
 	}
 	

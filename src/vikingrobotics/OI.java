@@ -62,8 +62,8 @@ public class OI implements Constants {
 		
 		uM = new UserMessages();
 		m_ds = DriverStation.getInstance();
-		if(m_ds.isFMSAttached()) Debug.setMode(false);
-		if(m_ds.getTeamNumber() != 1777) Debug.println("[ERROR] Team number not 1777 on the Driver Station! RUN FO YO LIFE!!1");
+		if(getDS().isFMSAttached()) Debug.setMode(false);
+		if(getDS().getTeamNumber() != 1777) Debug.println("[ERROR] Team number not 1777 on the Driver Station! RUN FO YO LIFE!!1");
 		
 //		cam = CameraVision.getInstance();
 		

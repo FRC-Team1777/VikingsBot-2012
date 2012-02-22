@@ -7,15 +7,9 @@ public class ShooterFeed extends CommandBase {
 	
 	private boolean forceFeed = false;
 	private boolean hasFinished = false;
-	private boolean hasTimeout = false;
 	private double timeout;
 	
-	public ShooterFeed() {
-	}
-	
 	public ShooterFeed(double timeout) {
-		this();
-		this.hasTimeout = true;
 		this.timeout = timeout;
 	}
 	
@@ -25,8 +19,10 @@ public class ShooterFeed extends CommandBase {
 	}
 
 	protected void initialize() {
-		if (hasTimeout)
-			setTimeout(timeout);
+		Debug.print("[" + this.getName() + "] initialize");
+		Debug.print("\tTimeout: " + timeout);
+		Debug.print("\tForceFeed: " + forceFeed);
+		setTimeout(timeout);
 	}
 
 	protected void execute() {
@@ -40,6 +36,7 @@ public class ShooterFeed extends CommandBase {
 	}
 
 	protected void end() {
+		Debug.println("\t\tDONE");
 		shooter.stopFeeder();
 	}
 

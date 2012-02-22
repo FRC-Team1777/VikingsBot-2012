@@ -52,7 +52,7 @@ public class ShooterMove extends CommandBase {
 		else {
 			shooter.moveStop();
 			shooter.resetGyro();
-			if(firstTimeStopped) {
+			if (firstTimeStopped) {
 				firstTimeStopped = false;
 				Debug.println("[ShooterMove] changing angle");
 				shooter.changingAngle();

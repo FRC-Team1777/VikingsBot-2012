@@ -1,21 +1,18 @@
 package vikingrobotics.commands;
 
+import vikingrobotics.misc.Debug;
+
 public class delay extends CommandBase {
 
-	private boolean hasTimeout = false;
 	private double timeout;
 
-	public delay() {}
-
 	public delay(double timeout) {
-		this();
-		this.hasTimeout = true;
 		this.timeout = timeout;
 	}
 
 	protected void initialize() {
-		if (hasTimeout)
-			setTimeout(timeout);
+		Debug.print("[delay] Timeout: " + timeout);
+		setTimeout(timeout);
 	}
 
 	protected void execute() {
@@ -25,7 +22,9 @@ public class delay extends CommandBase {
 		return isTimedOut();
 	}
 
-	protected void end() {}
+	protected void end() {
+		Debug.println("\t\tDONE");
+	}
 
 	protected void interrupted() {}
 

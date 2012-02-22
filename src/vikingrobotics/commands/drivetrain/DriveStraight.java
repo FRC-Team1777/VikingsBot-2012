@@ -6,7 +6,6 @@ import vikingrobotics.commands.CommandBase;
 public class DriveStraight extends CommandBase {
 	
 	private boolean hasTimeout = false;
-	private boolean driveStraight = false;
 	private double timeout;
 	private double speed;
 	
@@ -22,8 +21,11 @@ public class DriveStraight extends CommandBase {
 	}
 
 	protected void initialize() {
-		if(hasTimeout)
+		Debug.print("[" + this.getName() + "] Speed: " + this.speed);
+		if(hasTimeout) {
+			Debug.print("\tTimeout: " + timeout);
 			setTimeout(timeout);
+		}
 	}
 
 	protected void execute() {
@@ -34,7 +36,9 @@ public class DriveStraight extends CommandBase {
 		return isTimedOut();
 	}
 
-	protected void end() {}
+	protected void end() {
+		Debug.println("\t\tDONE");
+	}
 
 	protected void interrupted() {
 		Debug.println("[interrupted] " + getName());

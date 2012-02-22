@@ -11,6 +11,7 @@ public class ShooterStop extends CommandBase {
 	}
 	
 	protected void initialize() {
+		Debug.println("[" + this.getName() + "]");
 	}
 
 	protected void execute() {

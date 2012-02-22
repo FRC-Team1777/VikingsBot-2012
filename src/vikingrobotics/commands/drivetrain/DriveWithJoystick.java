@@ -11,7 +11,9 @@ public class DriveWithJoystick extends CommandBase implements Constants {
 		requires(drivetrain);
 	}
 
-	protected void initialize() {}
+	protected void initialize() {
+		Debug.println("[" + this.getName() + "] initialized");
+	}
 
 	protected void execute() {
 		if (oi.getDS().getDigitalIn(kDSDigitalInputArcadeDrive)) {
