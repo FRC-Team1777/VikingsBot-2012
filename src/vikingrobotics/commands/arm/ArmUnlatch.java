@@ -1,48 +1,51 @@
 package vikingrobotics.commands.arm;
 
-import edu.wpi.first.wpilibj.Timer;
 import vikingrobotics.misc.Debug;
-import vikingrobotics.subsystems.Arm;
 import vikingrobotics.commands.CommandBase;
 
-public class ArmSet extends CommandBase {
-	
+public class ArmUnlatch extends CommandBase {
+
+	private boolean hasFinished = false;
 	private boolean hasTimeout = false;
 	private double timeout;
 	
-	public ArmSet() {
-		super("ArmSet");
+	public ArmUnlatch() {
+		super("ArmUnlatch");
 		requires(arm);
 	}
 	
-	public ArmSet(double timeout) {
+	public ArmUnlatch(double timeout) {
 		this();
 		this.hasTimeout = true;
 		this.timeout = timeout;
 	}
 
 	protected void initialize() {
-		arm.setExtract();
-		arm.setSpeed(0.3);
-		if(hasTimeout)
+		hasFinished = false;
+		Debug.print("[ArmUnlatch] initialize");
+		if (hasTimeout) {
+			Debug.print("\tTimeout: " + timeout);
 			setTimeout(timeout);
+		}
+		Debug.print("\tTimeStarted: " + timeSinceInitialized());
 	}
 
 	protected void execute() {
-		arm.start();
+		arm.unlatch();
 	}
 
 	protected boolean isFinished() {
-		return isTimedOut();
+		return isTimedOut() || hasFinished;
 	}
 
 	protected void end() {
-		arm.stop();
+		Debug.println("\tTimeEnded: " + timeSinceInitialized());
+		arm.stopLatch();
 	}
 
 	protected void interrupted() {
 		Debug.println("[interrupted] " + getName());
-		arm.stop();
+		arm.stopLatch();
 	}
 
 }

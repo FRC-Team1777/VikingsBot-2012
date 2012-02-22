@@ -12,9 +12,6 @@ package vikingrobotics.misc;
  * @author Neal
  */
 public class Utils implements Constants {
-	
-	public Utils() {
-	}
 
 	/**
 	 * Rounds a double to specified number of decimal places.

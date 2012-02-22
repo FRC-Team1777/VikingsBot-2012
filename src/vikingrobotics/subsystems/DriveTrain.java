@@ -4,6 +4,7 @@ import vikingrobotics.misc.Constants;
 import vikingrobotics.misc.Debug;
 import vikingrobotics.misc.RobotMap;
 import vikingrobotics.misc.UserMessages;
+import vikingrobotics.commands.CommandBase;
 import vikingrobotics.commands.drivetrain.DriveWithJoystick;
 import edu.wpi.first.wpilibj.AnalogChannel;
 import edu.wpi.first.wpilibj.Encoder;
@@ -37,7 +38,7 @@ public class DriveTrain extends Subsystem implements Constants {
 		
 		drive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
 		drive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
-		
+				
 //		leftEncoder = new Encoder(RobotMap.kEncoderLeftA, RobotMap.kEncoderLeftB, false);
 //		rightEncoder = new Encoder(RobotMap.kEncoderRightA, RobotMap.kEncoderRightB, false);
 		
@@ -73,21 +74,28 @@ public class DriveTrain extends Subsystem implements Constants {
 		drive.tankDrive(0.0, 0.0);
 	}
 	
+	public boolean canDrive() {
+		return !(CommandBase.oi.getDS().getDigitalIn(4));
+	}
+	
 	public void tankDrive(double leftValue, double rightValue) {
 		leftValue *= direction;
 		rightValue *= direction;
-		drive.tankDrive(leftValue, rightValue);
+		if(canDrive())
+			drive.tankDrive(leftValue, rightValue);
 	}
 	
 	public void arcadeDrive(double moveValue, double rotateValue) {
 		moveValue *= direction;
 		rotateValue *= direction;
-		drive.arcadeDrive(moveValue, rotateValue);
+		if(canDrive())
+			drive.arcadeDrive(moveValue, rotateValue);
 	}
 	
 	public void straight(double speed) {
 		speed *= direction;
-		drive.tankDrive(speed, speed);
+		if(canDrive())
+			drive.tankDrive(speed, speed);
 	}
 	
 	public boolean isBalanced() {

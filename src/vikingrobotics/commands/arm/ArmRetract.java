@@ -8,11 +8,13 @@ public class ArmRetract extends CommandBase {
 	private boolean sensorInvalid = false;
 	private boolean hasFinished = false;
 	private boolean hasTimeout = false;
+	private double speed = 0.0;
 	private double timeout;
 	
 	public ArmRetract() {
 		super("ArmRetract");
 		requires(arm);
+		this.speed = 0.8;
 	}
 	
 	public ArmRetract(double timeout) {
@@ -23,14 +25,15 @@ public class ArmRetract extends CommandBase {
 
 	protected void initialize() {
 		arm.setRetract();
-		arm.setSpeed(0.8);
+		arm.setSpeed(this.speed);
 		hasFinished = false;
-		if (arm.getSensorRetracted() || arm.getSensorExtracted()) {
-			sensorInvalid = true;
-			hasFinished = true;
-		}
-		if(hasTimeout)
+		Debug.print("[ArmRetract] Speed: " + this.speed);
+		if(hasTimeout) {
+			Debug.print("\tTimeout: " + timeout);
 			setTimeout(timeout);
+		}
+		Debug.print("\tSensorExtracted: " + arm.getSensorExtracted());
+		Debug.println("\tSensorRetracted: " + arm.getSensorRetracted());
 	}
 
 	protected void execute() {

@@ -1,5 +1,7 @@
 package vikingrobotics.commands.arm;
 
+import com.sun.squawk.DebuggerSupport.SlotSetter;
+
 import vikingrobotics.misc.Debug;
 import vikingrobotics.commands.CommandBase;
 
@@ -8,11 +10,13 @@ public class ArmExtract extends CommandBase {
 	private boolean sensorInvalid = false;
 	private boolean hasFinished = false;
 	private boolean hasTimeout = false;
+	private double speed = 0.0;
 	private double timeout;
 	
 	public ArmExtract() {
 		super("ArmExtract");
 		requires(arm);
+		this.speed = 0.8;
 	}
 	
 	public ArmExtract(double timeout) {
@@ -20,17 +24,27 @@ public class ArmExtract extends CommandBase {
 		this.hasTimeout = true;
 		this.timeout = timeout;
 	}
+	
+	public ArmExtract(double timeout, boolean slow) {
+		this(timeout);
+		this.speed = 0.3;
+	}
 
 	protected void initialize() {
 		arm.setExtract();
-		arm.setSpeed(0.8);
+		arm.setSpeed(this.speed);
 		hasFinished = false;
-		if (arm.getSensorRetracted() || arm.getSensorExtracted()) {
+		if (arm.getSensorExtracted()) {
 			sensorInvalid = true;
 			hasFinished = true;
 		}
-		if(hasTimeout)
+		Debug.print("[ArmExtract] Speed: " + this.speed);
+		if(hasTimeout) {
+			Debug.print("\tTimeout: " + timeout);
 			setTimeout(timeout);
+		}
+		Debug.print("\tSensorExtracted: " + arm.getSensorExtracted());
+		Debug.println("\tSensorRetracted: " + arm.getSensorRetracted());
 	}
 
 	protected void execute() {

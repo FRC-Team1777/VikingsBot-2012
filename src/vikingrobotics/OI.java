@@ -2,11 +2,11 @@ package vikingrobotics;
 
 import vikingrobotics.commands.CommandBase;
 import vikingrobotics.commands.ResetGyro;
-import vikingrobotics.commands.arm.ArmCheckForRetraction;
 import vikingrobotics.commands.arm.ArmExtract;
+import vikingrobotics.commands.arm.ArmLatch;
 import vikingrobotics.commands.arm.ArmRetract;
 import vikingrobotics.commands.arm.ArmRun;
-import vikingrobotics.commands.arm.ArmSet;
+import vikingrobotics.commands.arm.ArmUnlatch;
 import vikingrobotics.commands.drivetrain.BalanceOnBridge;
 import vikingrobotics.commands.grabber.GrabberReverse;
 import vikingrobotics.commands.grabber.GrabberRun;
@@ -93,6 +93,12 @@ public class OI implements Constants {
 		// Arm buttons
 		new JoystickButton(gamepad, kGamepadButtonLB).whenPressed(new ArmRun());
 		new JoystickButton(joystick, kJoystickButtonThumbBottomRight).whenPressed(new ArmRun());
+		new JoystickButton(joystick2, 1).whenPressed(new ArmRun());
+		new JoystickButton(joystick2, 2).whenPressed(new ArmExtract(1.0));
+		new JoystickButton(joystick2, 3).whenPressed(new ArmRetract(1.0));
+		new JoystickButton(joystick2, 4).whenPressed(new ArmExtract(0.2, true));
+		new JoystickButton(joystick2, 5).whenPressed(new ArmLatch(getDS().getAnalogIn(3)));
+		new JoystickButton(joystick2, 6).whenPressed(new ArmUnlatch(getDS().getAnalogIn(4)));
 		SmartDashboard.putData("ArmRun", buttonArmRun);
 		buttonArmRun.whenPressed(new ArmRun());
 		

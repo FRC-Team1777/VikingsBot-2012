@@ -22,6 +22,12 @@ public class ArmLatch extends CommandBase {
 
 	protected void initialize() {
 		hasFinished = false;
+		Debug.print("[ArmLatch] initialize");
+		if (hasTimeout) {
+			Debug.print("\tTimeout: " + timeout);
+			setTimeout(timeout);
+		}
+		Debug.print("\tTimeStarted: " + timeSinceInitialized());
 	}
 
 	protected void execute() {
@@ -33,6 +39,7 @@ public class ArmLatch extends CommandBase {
 	}
 
 	protected void end() {
+		Debug.println("\tTimeEnded: " + timeSinceInitialized());
 		arm.stopLatch();
 	}
 
