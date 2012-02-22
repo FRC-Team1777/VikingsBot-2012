@@ -36,6 +36,10 @@ public class VikingsBot extends IterativeRobot implements Constants {
 
 	public void autonomousInit() {
 		Debug.println("[mode] Autonomous");
+		if(firstTime) {
+			CommandBase.oi.getUM().write(1, "Robot Ready!");
+			firstTime = false;
+		}
 		autonomousCommand.start();
 	}
 
@@ -49,7 +53,10 @@ public class VikingsBot extends IterativeRobot implements Constants {
 		Debug.println("[mode] Operator control");
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
-//		SmartDashboard.putDouble("TestDouble", 5.1);
+		if(firstTime) {
+			CommandBase.oi.getUM().write(1, "Robot Ready!");
+			firstTime = false;
+		}
 	}
 
 	public void teleopPeriodic() {
