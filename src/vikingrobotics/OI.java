@@ -33,18 +33,15 @@ public class OI implements Constants {
 	
 	private static OI instance = null;
 	
-	private Gamepad gamepad;
-	private Gamepad joystick;
-	private Gamepad joystick2;
-//	private Gyro gyro;
-	private Relay cameraLED;
+	private Gamepad gamepad;   // port 1
+	private Gamepad joystick;  // port 2
+	private Gamepad joystick2; // port 3
+//	private Relay cameraLED;
 	private DriverStation m_ds;
 	private SmartDashboard smartDashboard;
 	private CameraVision cam;
 	private UserMessages uM;
-	
-//	private double gyroAngle = 0.0;
-	
+		
 	private InternalButton buttonShooterUp = new InternalButton();
 	private InternalButton buttonShooterDn = new InternalButton();
 	private InternalButton buttonArmRun = new InternalButton();
@@ -75,10 +72,7 @@ public class OI implements Constants {
 		gamepad = new Gamepad(RobotMap.kJoystick1);
 		joystick = new Gamepad(RobotMap.kJoystick2);
 		joystick2 = new Gamepad(RobotMap.kJoystick3);
-		cameraLED = new Relay(RobotMap.kCamLED);
-//		gyro = new Gyro(RobotMap.kGyroChannel);
-//		gyro.setSensitivity(0.007);
-//		gyro.reset();
+//		cameraLED = new Relay(RobotMap.kCamLED);
 		
 		SmartDashboard.putData("ResetGyro", buttonResetGyro);
 		buttonResetGyro.whenPressed(new ResetGyro());
@@ -172,18 +166,9 @@ public class OI implements Constants {
 		}
 	}
 
-//	public Gyro getGyro() {
-//		return gyro;
+//	public Relay getCamLED() {
+//		return cameraLED;
 //	}
-	
-//	public double getGyroAngle() {
-//		gyroAngle = gyro.getAngle();
-//		return gyroAngle;
-//	}
-
-	public Relay getCamLED() {
-		return cameraLED;
-	}
 	
 	public DriverStation getDS() {
 		return m_ds;
