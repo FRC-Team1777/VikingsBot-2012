@@ -5,7 +5,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import vikingrobotics.OI;
 import vikingrobotics.subsystems.Arm;
 import vikingrobotics.subsystems.DriveTrain;
-import vikingrobotics.subsystems.ExampleSubsystem;
 import vikingrobotics.subsystems.Grabber;
 import vikingrobotics.subsystems.Shooter;
 
@@ -19,7 +18,6 @@ public abstract class CommandBase extends Command {
 	
 	public static OI oi;
 	// Create a single static instance of all of your subsystems
-	public static ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static DriveTrain drivetrain = new DriveTrain();
 	public static Shooter shooter = new Shooter();
 	public static Grabber grabber = new Grabber();
@@ -34,7 +32,6 @@ public abstract class CommandBase extends Command {
 		oi = new OI();
 		
 		// Show what command your subsystem is running on the SmartDashboard
-		SmartDashboard.putData(exampleSubsystem);
 		SmartDashboard.putData(drivetrain);
 		SmartDashboard.putData(shooter);
 		SmartDashboard.putData(grabber);

@@ -1,7 +1,5 @@
 package vikingrobotics.commands.arm;
 
-import com.sun.squawk.DebuggerSupport.SlotSetter;
-
 import vikingrobotics.misc.Debug;
 import vikingrobotics.commands.CommandBase;
 

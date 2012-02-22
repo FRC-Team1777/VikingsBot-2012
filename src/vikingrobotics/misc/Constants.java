@@ -18,7 +18,7 @@ public interface Constants {
 	public static final double kRobotEdgeToSonar = 4;
 	public static final double kWheelRadius = 3.0;
 	public static final double kWheelCircumference = 2 * Math.PI * kWheelRadius;
-	public static final double kShooterHeight = 40;
+	public static final double kShooterHeight = 43;
 	
 	public static final double kHoopHeightTop = 98;
 	public static final double kHoopHeightMid = 61;
@@ -29,7 +29,7 @@ public interface Constants {
 	public static final double DIST_FENDER_TO_KEY = 110;
 	public static final double DIST_ALLIANCEWALL_TO_KEY = 144;
 	public static final double DIST_ALLIANCEWALL_TO_BRIDGE = 280.4;
-	public static final double kBumperEdgeToWheelCenter = 9.5; 		//?
+	public static final double kBumperEdgeToWheelCenter = 7.5;
 	public static final double kFenderDepth = 38.5;
 	public static final double DIST_TO_FENDER = DIST_FENDER_TO_KEY - (kRobotWidthWithBumpers - kBumperEdgeToWheelCenter);
 	public static final double DIST_TO_BRIDGE = DIST_ALLIANCEWALL_TO_BRIDGE - kFenderDepth - kRobotWidthWithBumpers -2;
@@ -37,6 +37,8 @@ public interface Constants {
 	public static final double kTimeFeedOneBall = 0.4;
 	public static final double kShooterUp = 1.0;
 	public static final double kShooterDown = -1.0;
+
+	public static final double kJoystickThreshold = 0.2;
 	
 	// Gamepad axes
 	public static final int kGamepadAxisLeftStickX = 1;
@@ -60,13 +62,17 @@ public interface Constants {
 	public static final int kGamepadButtonMode = 11;		// ?
 	public static final int kGamepadButtonLogitech = 12;	// ?
 
-	// Joystick axes
+	// Joystick (Extreme 3D Pro) axes
 	public static final int kJoystickAxisX = 1;
 	public static final int kJoystickAxisY = 2;
 	public static final int kJoystickAxisZ = 3;
 	public static final int kJoystickAxisThrottle = 4;
 	public static final int kJoystickAxisTopX = 5;
 	public static final int kJoystickAxisTopY = 6;
+
+	// Joystick (Attack 3) axes
+	public static final int kJoystick2AxisX = 1;
+	public static final int kJoystick2AxisY = 2;
 	public static final int kJoystick2AxisThrottle = 3;
 
 	// Joystick buttons
@@ -82,6 +88,8 @@ public interface Constants {
 	public static final int kJoystickButton10 = 10;
 	public static final int kJoystickButton11 = 11;
 	public static final int kJoystickButton12 = 12;
+	
+	// Joystick (Extreme 3D Pro) buttons
 	public static final int kJoystickButtonTrigger = 1;
 	public static final int kJoystickButtonThumb = 2;
 	public static final int kJoystickButtonThumbBottomLeft = 3;
@@ -94,8 +102,21 @@ public interface Constants {
 	public static final int kJoystickButtonMidRight = 10;
 	public static final int kJoystickButtonBottomLeft = 11;
 	public static final int kJoystickButtonBottomRight = 12;
-	public static final double kJoystickThreshold = 0.2;
 	
+	// Joystick (Attack 3) buttons
+	public static final int kJoystick2ButtonTrigger = 1;
+	public static final int kJoystick2ButtonThumbBottom = 2;
+	public static final int kJoystick2ButtonThumbTop = 3;
+	public static final int kJoystick2ButtonThumbLeft = 4;
+	public static final int kJoystick2ButtonThumbRight = 5;
+	public static final int kJoystick2ButtonLeftTop = 6;
+	public static final int kJoystick2ButtonLeftBottom = 7;
+	public static final int kJoystick2ButtonBottomLeft = 8;
+	public static final int kJoystick2ButtonBottomRight = 9;
+	public static final int kJoystick2ButtonRightBottom = 10;
+	public static final int kJoystick2ButtonRightTop = 11;
+	
+	// Driver Station Digital Input
 	public static final int kDSDigitalInputShooterOnJ2 = 1;
 	public static final int kDSDigitalInputShooterAI1 = 2;
 	public static final int kDSDigitalInputArcadeDrive = 3;

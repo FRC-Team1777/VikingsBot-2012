@@ -1,6 +1,5 @@
 package vikingrobotics;
 
-import vikingrobotics.commands.CommandBase;
 import vikingrobotics.commands.ResetGyro;
 import vikingrobotics.commands.arm.ArmExtract;
 import vikingrobotics.commands.arm.ArmLatch;
@@ -20,7 +19,6 @@ import vikingrobotics.misc.Debug;
 import vikingrobotics.misc.Gamepad;
 import vikingrobotics.misc.RobotMap;
 import vikingrobotics.misc.UserMessages;
-import vikingrobotics.subsystems.Shooter;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.Relay;

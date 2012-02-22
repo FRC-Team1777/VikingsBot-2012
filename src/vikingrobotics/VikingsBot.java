@@ -7,13 +7,10 @@
 
 package vikingrobotics;
 
-import vikingrobotics.commands.arm.ArmRun;
-import vikingrobotics.commands.autonomous.*;
-import vikingrobotics.commands.shooter.ShooterMove;
 import vikingrobotics.commands.CommandBase;
+import vikingrobotics.commands.autonomous.Auton1;
 import vikingrobotics.misc.Constants;
 import vikingrobotics.misc.Debug;
-import vikingrobotics.misc.Utils;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
