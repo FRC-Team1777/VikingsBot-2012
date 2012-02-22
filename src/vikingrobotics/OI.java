@@ -7,7 +7,6 @@ import vikingrobotics.commands.arm.ArmLatch;
 import vikingrobotics.commands.arm.ArmRetract;
 import vikingrobotics.commands.arm.ArmRun;
 import vikingrobotics.commands.arm.ArmUnlatch;
-import vikingrobotics.commands.drivetrain.BalanceOnBridge;
 import vikingrobotics.commands.grabber.GrabberReverse;
 import vikingrobotics.commands.grabber.GrabberRun;
 import vikingrobotics.commands.grabber.GrabberStop;
@@ -83,12 +82,6 @@ public class OI implements Constants {
 		
 		SmartDashboard.putData("ResetGyro", buttonResetGyro);
 		buttonResetGyro.whenPressed(new ResetGyro());
-		
-		// Balance On Bridge buttons
-//		new JoystickButton(gamepad, kGamepadButtonLB).whileHeld(new BalanceOnBridge(getGyroAngle()));
-//		new JoystickButton(joystick, kJoystickButtonTopLeft).whileHeld(new BalanceOnBridge(getGyroAngle()));
-//		SmartDashboard.putData("BalanceOnBridge", buttonBalanceOnBridge);
-//		buttonBalanceOnBridge.whileHeld(new BalanceOnBridge(getGyroAngle()));
 		
 		// Arm buttons
 		new JoystickButton(gamepad, kGamepadButtonLB).whenPressed(new ArmRun());

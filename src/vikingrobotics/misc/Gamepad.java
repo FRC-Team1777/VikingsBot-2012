@@ -93,6 +93,12 @@ public class Gamepad extends Joystick implements Constants {
 		return scale(super.getZ());
 	}
 	
+	/**
+	 * Get the value of the throttle on the joystick where
+	 * 0 being the bottom and 1 being the top.
+	 * @param axis The axis that the throttle is.
+	 * @return A scaled value of the throttle from 0.0 - 1.0.
+	 */
 	public double getJoystickThrottle(int axis) {
 		return scaleThrottle(-getAxis(axis));
 	}
@@ -111,11 +117,7 @@ public class Gamepad extends Joystick implements Constants {
 	 * @param x The joystick value that needs to be rounded up.
 	 */
 	private double scale(double x) {
-		
 		if (Math.abs(x) < kJoystickThreshold) return 0;
-//		double scaledSlope = 1 / (1 - kJoystickThreshold);
-//		if (x > 0) return (x - kJoystickThreshold) * scaledSlope;
-//		if (x < 0) return (x + kJoystickThreshold) * scaledSlope;
 		if (x > 0) return (x - kJoystickThreshold) / (1 - kJoystickThreshold);
 		if (x < 0) return (x + kJoystickThreshold) / (1 - kJoystickThreshold);
 		return 0;

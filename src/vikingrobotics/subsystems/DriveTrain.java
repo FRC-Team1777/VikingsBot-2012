@@ -98,12 +98,4 @@ public class DriveTrain extends Subsystem implements Constants {
 			drive.tankDrive(speed, speed);
 	}
 	
-	public boolean isBalanced() {
-		return this.isBalancedOnBridge;
-	}
-	
-	public void setBalanced(boolean isBalanced) {
-		this.isBalancedOnBridge = isBalanced;
-	}
-
 }

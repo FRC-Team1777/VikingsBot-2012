@@ -9,10 +9,9 @@ public class Auton1 extends CommandGroup {
 	
 	public Auton1() {
 		super("Auton1");
-		addSequential(new AutonShoot());
-		addSequential(new DriveStraight(0.0, 0.0));
-		addParallel(new GrabberRun());
-		addSequential(new ArmExtract());
+//		addSequential(new AutonShoot());
+//		addSequential(new DriveStraight(0.0, 0.0));
+//		addParallel(new GrabberRun());
 	}
 
 }
