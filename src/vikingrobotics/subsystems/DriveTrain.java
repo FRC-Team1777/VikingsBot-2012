@@ -3,7 +3,6 @@ package vikingrobotics.subsystems;
 import vikingrobotics.misc.Constants;
 import vikingrobotics.misc.Debug;
 import vikingrobotics.misc.RobotMap;
-import vikingrobotics.misc.UserMessages;
 import vikingrobotics.commands.CommandBase;
 import vikingrobotics.commands.drivetrain.DriveWithJoystick;
 import edu.wpi.first.wpilibj.AnalogChannel;

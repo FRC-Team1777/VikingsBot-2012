@@ -1,7 +1,5 @@
 package vikingrobotics.misc;
 
-import edu.wpi.first.wpilibj.Relay;
-
 /**
  * The ports for all motors on the robot.
  * @author Neal
