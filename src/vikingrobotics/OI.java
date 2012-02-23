@@ -1,3 +1,10 @@
+/*----------------------------------------------------------------------------*/
+/* Copyright (c) FIRST 2008. All Rights Reserved.                             */
+/* Open Source Software - may be modified and shared by FRC teams. The code   */
+/* must be accompanied by the FIRST BSD license file in the root directory of */
+/* the project.                                                               */
+/*----------------------------------------------------------------------------*/
+
 package vikingrobotics;
 
 import vikingrobotics.commands.ResetGyro;
@@ -79,9 +86,9 @@ public class OI implements Constants {
 		new JoystickButton(gamepad, kGamepadButtonLB).whenPressed(new ArmRun());
 		new JoystickButton(joystick, kJoystickButtonThumbBottomRight).whenPressed(new ArmRun());
 		new JoystickButton(joystick2, 1).whenPressed(new ArmRun());
-		new JoystickButton(joystick2, 2).whenPressed(new ArmExtract(1.0));
-		new JoystickButton(joystick2, 3).whenPressed(new ArmRetract(1.0));
-		new JoystickButton(joystick2, 4).whenPressed(new ArmExtract(0.2, true));
+		new JoystickButton(joystick2, 2).whenPressed(new ArmExtract(kArmSpeed, 1.0));
+		new JoystickButton(joystick2, 3).whenPressed(new ArmRetract(kArmSpeed, 1.0));
+		new JoystickButton(joystick2, 4).whenPressed(new ArmExtract(kArmSlowSpeed, 0.2));
 		new JoystickButton(joystick2, 5).whenPressed(new ArmLatch(getDS().getAnalogIn(3)));
 		new JoystickButton(joystick2, 6).whenPressed(new ArmUnlatch(getDS().getAnalogIn(4)));
 		SmartDashboard.putData("ArmRun", buttonArmRun);

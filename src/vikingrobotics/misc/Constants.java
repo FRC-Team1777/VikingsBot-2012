@@ -1,3 +1,10 @@
+/*----------------------------------------------------------------------------*/
+/* Copyright (c) FIRST 2008. All Rights Reserved.                             */
+/* Open Source Software - may be modified and shared by FRC teams. The code   */
+/* must be accompanied by the FIRST BSD license file in the root directory of */
+/* the project.                                                               */
+/*----------------------------------------------------------------------------*/
+
 package vikingrobotics.misc;
 
 /**
@@ -9,6 +16,10 @@ public interface Constants {
 	public static final int kTeamNumber = 1777;
 	
 	public static final double kMaxBatteryVoltage = 13.0;
+	
+	public static final double kArmSpeed = 0.8;
+	public static final double kArmSlowSpeed = 0.3;
+	public static final double kArmLatchSpeed = 0.8;
 
 	public static final double kRobotWidth = 38;
 	public static final double kRobotLength = 28;

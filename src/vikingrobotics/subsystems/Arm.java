@@ -1,3 +1,10 @@
+/*----------------------------------------------------------------------------*/
+/* Copyright (c) FIRST 2008. All Rights Reserved.                             */
+/* Open Source Software - may be modified and shared by FRC teams. The code   */
+/* must be accompanied by the FIRST BSD license file in the root directory of */
+/* the project.                                                               */
+/*----------------------------------------------------------------------------*/
+
 package vikingrobotics.subsystems;
 
 import vikingrobotics.misc.Debug;
@@ -14,7 +21,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Arm extends Subsystem {
 
-	private static double direction = -1;
 	private double speed = 0.1;
 	private Jaguar arm;
 	private Relay latcher;
@@ -55,16 +61,12 @@ public class Arm extends Subsystem {
 		this.speed = speed;
 	}
 	
-	public void setExtract() {
-		direction = -1;
+	public void extract() {
+		arm.set(this.speed * -1);
 	}
 	
-	public void setRetract() {
-		direction = 1;
-	}
-	
-	public void start() {
-		arm.set(this.speed * direction);
+	public void retract() {
+		arm.set(this.speed * 1);
 	}
 	
 	public void stop() {

@@ -1,3 +1,10 @@
+/*----------------------------------------------------------------------------*/
+/* Copyright (c) FIRST 2008. All Rights Reserved.                             */
+/* Open Source Software - may be modified and shared by FRC teams. The code   */
+/* must be accompanied by the FIRST BSD license file in the root directory of */
+/* the project.                                                               */
+/*----------------------------------------------------------------------------*/
+
 package vikingrobotics.commands.shooter;
 
 import vikingrobotics.misc.Constants;
@@ -7,8 +14,10 @@ import vikingrobotics.commands.CommandBase;
 public class ShooterMove extends CommandBase {
 	
 	private boolean hasFinished = false;
+	private boolean hasTimeout = false;
 	private boolean hasSpeed = false;
 	private boolean firstTimeStopped = false;
+	private double timeout;
 	private double speed = 0.0;
     public static class Direction {
         public final int value;
@@ -28,6 +37,12 @@ public class ShooterMove extends CommandBase {
 		this();
 		this.speed = speed;
 		this.hasSpeed = true;
+	}
+	
+	public ShooterMove(double speed, double timeout) {
+		this(speed);
+		this.hasTimeout = true;
+		this.timeout = timeout;
 	}
 	
 	protected void initialize() {
@@ -66,7 +81,7 @@ public class ShooterMove extends CommandBase {
 	}
 	
 	protected boolean isFinished() {
-		return hasFinished;
+		return isTimedOut() || hasFinished;
 	}
 
 	protected void end() {

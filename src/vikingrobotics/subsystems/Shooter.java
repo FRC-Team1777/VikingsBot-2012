@@ -1,3 +1,10 @@
+/*----------------------------------------------------------------------------*/
+/* Copyright (c) FIRST 2008. All Rights Reserved.                             */
+/* Open Source Software - may be modified and shared by FRC teams. The code   */
+/* must be accompanied by the FIRST BSD license file in the root directory of */
+/* the project.                                                               */
+/*----------------------------------------------------------------------------*/
+
 package vikingrobotics.subsystems;
 
 import vikingrobotics.commands.CommandBase;
@@ -113,7 +120,8 @@ public class Shooter extends Subsystem {
 	
 	public void resetGyro() {
 		gyro.reset();
-	}	
+	}
+	
 	public void resetCurrentGyroAngle() {
 		this.currentAngle = defaultGyroAngle + ((CommandBase.oi.getDS().getAnalogIn(2) * 10) - 25);
 	}
@@ -122,31 +130,8 @@ public class Shooter extends Subsystem {
 		this.currentAngle -= gyro.getAngle();
 	}
 	
-	public void updateAngle() {
-		angleSet = false;
-		if ((getGyroAngle() - this.currentAngle) > angleTolerance) {
-			angler.set(Relay.Value.kReverse); // Go down
-		}
-		else if ((getGyroAngle() - this.currentAngle) < -angleTolerance) {
-			angler.set(Relay.Value.kForward); // Go up
-		}
-		else {
-			angleSet = true;
-			angler.set(Relay.Value.kOff);
-		}
-		uM.write(6, "Gyro: " + this.currentAngle);
-	}
-	public void updateAngle(double angle) {
-		setAngle(angle);
-		updateAngle();
-	}
-	
 	public double getGyroAngle() {
 		return currentAngle;
-	}
-	
-	// Will eventually be the feeder with perfect timing to feed the ball
-	public void shoot() {
 	}
 	
 
