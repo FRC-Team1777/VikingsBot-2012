@@ -10,7 +10,6 @@ package vikingrobotics.subsystems;
 import vikingrobotics.commands.CommandBase;
 import vikingrobotics.misc.Debug;
 import vikingrobotics.misc.RobotMap;
-import vikingrobotics.misc.UserMessages;
 import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.Relay;
@@ -33,7 +32,6 @@ public class Shooter extends Subsystem {
 	private final static double speedTolerance = 2.0;
 	private final static double angleTolerance = 1.0;
 	private final static double defaultGyroAngle = 30;
-	private UserMessages uM;
 	
 	public Shooter() {
 		super("Shooter");

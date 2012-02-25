@@ -23,9 +23,9 @@ import vikingrobotics.commands.ResetGyro;
 import vikingrobotics.misc.CameraVision;
 import vikingrobotics.misc.Constants;
 import vikingrobotics.misc.Debug;
+import vikingrobotics.misc.Driverstation;
 import vikingrobotics.misc.Gamepad;
 import vikingrobotics.misc.RobotMap;
-import vikingrobotics.misc.UserMessages;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.Relay;
@@ -42,11 +42,11 @@ public class OI implements Constants {
 	private Gamepad joystick;  // port 2
 	private Gamepad joystick2; // port 3
 //	private Relay cameraLED;
-	private DriverStation m_ds;
+	private Driverstation m_ds;
 	private SmartDashboard smartDashboard;
 	private CameraVision cam;
-	private UserMessages uM;
-		
+	
+	// Non-physical buttons used with SmartDashboard
 	private InternalButton buttonShooterUp = new InternalButton();
 	private InternalButton buttonShooterDn = new InternalButton();
 	private InternalButton buttonArmRun = new InternalButton();
@@ -65,13 +65,12 @@ public class OI implements Constants {
 	private InternalButton buttonShooterStop = new InternalButton();
 	private InternalButton buttonResetGyro = new InternalButton();
 	
+	
 	public OI() {
-		
-		uM = new UserMessages();
-		m_ds = DriverStation.getInstance();
+		m_ds = Driverstation.getInstance();
 		if(getDS().isFMSAttached()) Debug.setMode(false);
 		if(getDS().getDigitalIn(kDSDigitalInputDebugMode)) Debug.setMode(false);
-		if(getDS().getTeamNumber() != kTeamNumber) Debug.println("[ERROR] Team number not 1777 on the Driver Station! RUN FO YO LIFE!!1");
+		if(getDS().getTeamNumber() != kTeamNumber) Debug.println("[ERROR] Team number not "+ kTeamNumber +" on the Driver Station! RUN FO YO LIFE!!1");
 		
 //		cam = CameraVision.getInstance();
 		
@@ -177,16 +176,8 @@ public class OI implements Constants {
 //		return cameraLED;
 //	}
 	
-	public DriverStation getDS() {
+	public Driverstation getDS() {
 		return m_ds;
-	}
-	
-	public SmartDashboard getSmartDashboard() {
-		return smartDashboard;
-	}
-	
-	public UserMessages getUM() {
-		return uM;
 	}
 	
 	public CameraVision getCameraVision() {

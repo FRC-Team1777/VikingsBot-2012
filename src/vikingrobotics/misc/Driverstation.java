@@ -1,5 +1,5 @@
 /*----------------------------------------------------------------------------*/
-/* Copyright (c) FIRST 2008. All rights Reserved.                             */
+/* Copyright (c) FIRST 2008. All Rights Reserved.                             */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
@@ -7,17 +7,22 @@
 
 package vikingrobotics.misc;
 
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.DriverStationEnhancedIO;
 import edu.wpi.first.wpilibj.DriverStationLCD;
 import edu.wpi.first.wpilibj.DriverStationLCD.Line;
 
 /**
- * Prints the specified string on the User Messages section on the Driver Station.
- *
+ * 
  * @author Neal
  */
-public class UserMessages {
+public class Driverstation extends DriverStation implements Constants {
 	
-	private DriverStationLCD uM;
+	private static Driverstation instance = null;
+	private DriverStationIO IO;
+	private DriverStationLCD LCD;
+	private static final int kDefaultStartColumn = 1;
+	private static final String kDefaultMessage = "                         ";
 	
 	public static final Line[] line = {
 		DriverStationLCD.Line.kMain6,
@@ -28,32 +33,27 @@ public class UserMessages {
 		DriverStationLCD.Line.kUser6
 	};
 	
-
-	/**
-	 * UserMessages constructor
-	 * 
-	 */
-	public UserMessages() {
-		uM = DriverStationLCD.getInstance();
-		init();
-	}
-
-	/**
-	 * Initialize User Messages. Clear all lines and update 1st line.
-	 * 
-	 */
-	private void init() {
+	public Driverstation() {
+		IO = new DriverStationIO();
+		LCD = DriverStationLCD.getInstance();
 		clearAll();
-		write(1, 1, "Initializing...");
+		print(1, "Initializing...");
 	}
-
+	
+	public static Driverstation getInstance() {
+		if (instance == null)
+			instance = new Driverstation();
+		return instance;
+	}
+	
+	
 	/**
 	 * Prints the specified string on the User Messages starting from the begining.
 	 * @param lineNumber Line number. Could be from 1 to 6.
 	 * @param Message The message to be printed.
 	 */
-	public void write(int lineNumber, String Message) {
-		write(lineNumber, 1, Message);
+	public void print(int lineNumber, String Message) {
+		this.print(lineNumber, kDefaultStartColumn, Message);
 	}
 
 	/**
@@ -62,10 +62,10 @@ public class UserMessages {
 	 * @param startColumn The starting column to use.
 	 * @param Message The message to be printed.
 	 */
-	public void write(int lineNumber, int startColumn, String Message) {
-		uM.println(line[lineNumber-1], startColumn, "                         ");
-		uM.println(line[lineNumber-1], startColumn, Message);
-		uM.updateLCD();
+	public void print(int lineNumber, int startColumn, String Message) {
+		LCD.println(line[lineNumber-1], startColumn, kDefaultMessage);
+		LCD.println(line[lineNumber-1], startColumn, Message);
+		LCD.updateLCD();
 	}
 
 	/**
@@ -73,7 +73,7 @@ public class UserMessages {
 	 * @param lineNumber The line to be cleared.
 	 */
 	public void clear(int lineNumber) {
-		write(lineNumber, 1, "");
+		print(lineNumber, kDefaultStartColumn, kDefaultMessage);
 	}
 	
 	/**
@@ -82,7 +82,7 @@ public class UserMessages {
 	 */
 	public void clearAll() {
 		for (int i = 1; i <= 6; i++) {
-			write(i, 1, "");
+			print(i, kDefaultStartColumn, kDefaultMessage);
 		}
 	}
 
