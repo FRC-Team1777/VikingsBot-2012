@@ -131,7 +131,10 @@ public interface Constants {
 	public static final int kDSDigitalInputShooterOnJ2 = 1;
 	public static final int kDSDigitalInputShooterAI1 = 2;
 	public static final int kDSDigitalInputArcadeDrive = 3;
-	public static final int kDSDigitalInput4 = 4;
+	public static final int kDSDigitalInputDisableDrive = 4;
 	public static final int kDSDigitalInput5 = 5;
+	public static final int kDSDigitalInput6 = 6;
+	public static final int kDSDigitalInput7 = 7;
+	public static final int kDSDigitalInputDebugMode = 8;
 
 }

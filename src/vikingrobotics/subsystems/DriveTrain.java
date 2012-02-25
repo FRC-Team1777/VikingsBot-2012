@@ -81,7 +81,7 @@ public class DriveTrain extends Subsystem implements Constants {
 	}
 	
 	public boolean canDrive() {
-		return !(CommandBase.oi.getDS().getDigitalIn(4));
+		return !(CommandBase.oi.getDS().getDigitalIn(kDSDigitalInputDisableDrive));
 	}
 	
 	public void tankDrive(double leftValue, double rightValue) {

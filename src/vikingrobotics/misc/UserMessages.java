@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj.DriverStationLCD.Line;
  */
 public class UserMessages {
 	
-	private DriverStationLCD uM = DriverStationLCD.getInstance();
+	private DriverStationLCD uM;
 	
 	public static final Line[] line = {
 		DriverStationLCD.Line.kMain6,
@@ -25,7 +25,8 @@ public class UserMessages {
 		DriverStationLCD.Line.kUser3,
 		DriverStationLCD.Line.kUser4,
 		DriverStationLCD.Line.kUser5,
-		DriverStationLCD.Line.kUser6};
+		DriverStationLCD.Line.kUser6
+	};
 	
 
 	/**
@@ -33,6 +34,7 @@ public class UserMessages {
 	 * 
 	 */
 	public UserMessages() {
+		uM = DriverStationLCD.getInstance();
 		init();
 	}
 
@@ -41,7 +43,6 @@ public class UserMessages {
 	 * 
 	 */
 	private void init() {
-		
 		clearAll();
 		write(1, 1, "Initializing...");
 	}
@@ -52,7 +53,6 @@ public class UserMessages {
 	 * @param Message The message to be printed.
 	 */
 	public void write(int lineNumber, String Message) {
-		
 		write(lineNumber, 1, Message);
 	}
 
@@ -63,7 +63,6 @@ public class UserMessages {
 	 * @param Message The message to be printed.
 	 */
 	public void write(int lineNumber, int startColumn, String Message) {
-
 		uM.println(line[lineNumber-1], startColumn, "                         ");
 		uM.println(line[lineNumber-1], startColumn, Message);
 		uM.updateLCD();
@@ -74,7 +73,6 @@ public class UserMessages {
 	 * @param lineNumber The line to be cleared.
 	 */
 	public void clear(int lineNumber) {
-		
 		write(lineNumber, 1, "");
 	}
 	
@@ -83,9 +81,9 @@ public class UserMessages {
 	 * 
 	 */
 	public void clearAll() {
-		
-		for (int i = 1; i <= 6; i++)
+		for (int i = 1; i <= 6; i++) {
 			write(i, 1, "");
+		}
 	}
 
 }

@@ -7,7 +7,6 @@
 
 package vikingrobotics;
 
-import vikingrobotics.commands.ResetGyro;
 import vikingrobotics.commands.arm.ArmExtract;
 import vikingrobotics.commands.arm.ArmLatch;
 import vikingrobotics.commands.arm.ArmRetract;
@@ -20,6 +19,7 @@ import vikingrobotics.commands.shooter.ShooterFeed;
 import vikingrobotics.commands.shooter.ShooterMove;
 import vikingrobotics.commands.shooter.ShooterRun;
 import vikingrobotics.commands.shooter.ShooterStop;
+import vikingrobotics.commands.ResetGyro;
 import vikingrobotics.misc.CameraVision;
 import vikingrobotics.misc.Constants;
 import vikingrobotics.misc.Debug;
@@ -70,7 +70,8 @@ public class OI implements Constants {
 		uM = new UserMessages();
 		m_ds = DriverStation.getInstance();
 		if(getDS().isFMSAttached()) Debug.setMode(false);
-		if(getDS().getTeamNumber() != 1777) Debug.println("[ERROR] Team number not 1777 on the Driver Station! RUN FO YO LIFE!!1");
+		if(getDS().getDigitalIn(kDSDigitalInputDebugMode)) Debug.setMode(false);
+		if(getDS().getTeamNumber() != kTeamNumber) Debug.println("[ERROR] Team number not 1777 on the Driver Station! RUN FO YO LIFE!!1");
 		
 //		cam = CameraVision.getInstance();
 		
@@ -112,7 +113,8 @@ public class OI implements Constants {
 		
 		// Shooter buttons
 		new JoystickButton(gamepad, kGamepadButtonY).whenPressed(new ShooterRun(0.384));
-		new JoystickButton(joystick2, 8).whenPressed(new ShooterRun());
+		new JoystickButton(joystick2, kJoystick2ButtonBottomLeft).whenPressed(new ShooterRun());
+		new JoystickButton(joystick2, kJoystick2ButtonBottomRight).whenPressed(new ShooterStop());
 		new JoystickButton(joystick, kJoystickButtonBottomLeft).whenPressed(new ShooterRun());
 		new JoystickButton(joystick, kJoystickButtonBottomRight).whenPressed(new ShooterStop());
 		SmartDashboard.putData("ShooterRun", buttonShooterRun);

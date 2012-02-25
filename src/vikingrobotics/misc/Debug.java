@@ -25,24 +25,6 @@ public class Debug {
         }
     }
 
-    public static void print(int s) {
-        if (kDebugMode) {
-            System.out.print(s);
-        }
-    }
-
-    public static void print(double s) {
-        if (kDebugMode) {
-            System.out.print(s);
-        }
-    }
-
-    public static void print(boolean s) {
-        if (kDebugMode) {
-            System.out.print(s);
-        }
-    }
-
     /**
      * If in debug mode, prints specified string with a newline
      * @param s
@@ -53,21 +35,13 @@ public class Debug {
         }
     }
 
-    public static void println(double s) {
+    /**
+     * If in debug mode, prints specified string with a newline
+     * @param s
+     */
+    public static void err(String s) {
         if (kDebugMode) {
-            System.out.println(s);
-        }
-    }
-
-    public static void println(int s) {
-        if (kDebugMode) {
-            System.out.println(s);
-        }
-    }
-
-    public static void println(boolean s) {
-        if (kDebugMode) {
-            System.out.println(s);
+            System.err.println(s);
         }
     }
 
