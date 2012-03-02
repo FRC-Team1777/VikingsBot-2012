@@ -12,7 +12,6 @@ import vikingrobotics.misc.RobotMap;
 import vikingrobotics.commands.arm.ArmManual;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Jaguar;
-import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -23,17 +22,20 @@ public class Arm extends Subsystem {
 
 	private double speed = 0.1;
 	private Jaguar arm;
-	private Relay latcher;
-	private DigitalInput sensorExtracted, sensorRetracted;
+	private Jaguar latcher;
+	private DigitalInput sensorExtracted;
+	private DigitalInput sensorRetracted;
+	private DigitalInput sensorLatch;
 	
 	public Arm() {
 		super("Arm");
 		arm = new Jaguar(RobotMap.kArmChannel);
-//		latcher = new Relay(RobotMap.kArmLatchChannel);
-		Debug.println("[robot] Initializing arm motor on channel " + RobotMap.kArmChannel);
-//		Debug.println("[robot] Initializing arm latch motor on relay " + RobotMap.kArmLatchChannel);
+		latcher = new Jaguar(RobotMap.kArmLatchChannel);
+		Debug.println("[Arm] Initializing arm motor on channel " + RobotMap.kArmChannel);
+		Debug.println("[Arm] Initializing arm latch motor on relay " + RobotMap.kArmLatchChannel);
 		sensorExtracted = new DigitalInput(RobotMap.kArmSensorExtracted);
 		sensorRetracted = new DigitalInput(RobotMap.kArmSensorRetracted);
+		sensorLatch = new DigitalInput(RobotMap.kArmSensorLatch);
 	}
 	
 	public void initDefaultCommand() {
@@ -42,19 +44,23 @@ public class Arm extends Subsystem {
 	}
 	
 	public void latch() {
-//		latcher.set(Relay.Value.kForward);
+		latcher.set(-0.8);
 	}
 	
 	public void unlatch() {
-//		latcher.set(Relay.Value.kReverse);
+		latcher.set(0.8);
 	}
 	
 	public void stopLatch() {
-//		latcher.set(Relay.Value.kOff);
+		latcher.set(0.0);
 	}
 	
 	public double getSpeed() {
 		return this.speed;
+	}
+	
+	public void runLatch(double speed) {
+		latcher.set(speed);
 	}
 	
 	public void setSpeed(double speed) {
@@ -79,6 +85,10 @@ public class Arm extends Subsystem {
 	
 	public boolean getSensorExtracted() {
 		return !sensorExtracted.get();
+	}
+	
+	public boolean getSensorLatch() {
+		return sensorLatch.get();
 	}
 		
 }

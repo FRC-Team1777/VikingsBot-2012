@@ -42,7 +42,7 @@ public class OI implements Constants {
 	private Gamepad joystick;  // port 2
 	private Gamepad joystick2; // port 3
 //	private Relay cameraLED;
-	private Driverstation m_ds;
+	private DriverStation m_ds;
 	private SmartDashboard smartDashboard;
 	private CameraVision cam;
 	
@@ -55,6 +55,7 @@ public class OI implements Constants {
 	private InternalButton buttonGrabberStop = new InternalButton();
 	private InternalButton buttonBalanceOnBridge = new InternalButton();
 	private InternalButton buttonShooterMove = new InternalButton();
+	private InternalButton buttonShooterMove2 = new InternalButton();
 	private InternalButton buttonShooterRun = new InternalButton();
 	private InternalButton buttonShooterRun00 = new InternalButton();
 	private InternalButton buttonShooterRun02 = new InternalButton();
@@ -70,7 +71,7 @@ public class OI implements Constants {
 		m_ds = Driverstation.getInstance();
 		if(getDS().isFMSAttached()) Debug.setMode(false);
 		if(getDS().getDigitalIn(kDSDigitalInputDebugMode)) Debug.setMode(false);
-		if(getDS().getTeamNumber() != kTeamNumber) Debug.println("[ERROR] Team number not "+ kTeamNumber +" on the Driver Station! RUN FO YO LIFE!!1");
+		if(getDS().getTeamNumber() != kTeamNumber) Debug.println("[ERROR] Team number not "+ kTeamNumber +" on the Driver Station!");
 		
 //		cam = CameraVision.getInstance();
 		
@@ -88,9 +89,9 @@ public class OI implements Constants {
 		new JoystickButton(joystick2, 1).whenPressed(new ArmRun());
 		new JoystickButton(joystick2, 2).whenPressed(new ArmExtract(kArmSpeed, 1.0));
 		new JoystickButton(joystick2, 3).whenPressed(new ArmRetract(kArmSpeed, 1.0));
-		new JoystickButton(joystick2, 4).whenPressed(new ArmExtract(kArmSlowSpeed, 0.2));
-		new JoystickButton(joystick2, 5).whenPressed(new ArmLatch(getDS().getAnalogIn(3)));
-		new JoystickButton(joystick2, 6).whenPressed(new ArmUnlatch(getDS().getAnalogIn(4)));
+		new JoystickButton(joystick2, 4).whenPressed(new ArmExtract(kArmSlowSpeed, 0.3));
+		new JoystickButton(joystick2, 5).whileHeld(new ArmLatch());
+		new JoystickButton(joystick2, 6).whileHeld(new ArmUnlatch());
 		SmartDashboard.putData("ArmRun", buttonArmRun);
 		buttonArmRun.whenPressed(new ArmRun());
 		
@@ -99,10 +100,12 @@ public class OI implements Constants {
 		new JoystickButton(joystick, kJoystickButtonThumbBottomLeft).whileHeld(new ShooterMove(kShooterDown));
 		SmartDashboard.putData("ShooterUp", buttonShooterUp);
 		SmartDashboard.putData("ShooterDn", buttonShooterDn);
+		SmartDashboard.putData("ShooterMove", buttonShooterMove2);
 		buttonShooterUp.whileHeld(new ShooterMove(kShooterUp));
 		buttonShooterDn.whileHeld(new ShooterMove(kShooterDown));
 		buttonShooterMove.setPressed(true);
 		buttonShooterMove.whenPressed(new ShooterMove());
+		buttonShooterMove2.whenPressed(new ShooterMove());
 		
 		// Feeder buttons
 		new JoystickButton(gamepad, kGamepadButtonA).whenPressed(new ShooterFeed(kTimeFeedOneBall));
@@ -176,7 +179,7 @@ public class OI implements Constants {
 //		return cameraLED;
 //	}
 	
-	public Driverstation getDS() {
+	public DriverStation getDS() {
 		return m_ds;
 	}
 	

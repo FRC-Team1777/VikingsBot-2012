@@ -27,31 +27,24 @@ public class DriveTrain extends Subsystem implements Constants {
 	
 	private RobotDrive drive;
 	private Jaguar leftJag, rightJag;
-//	private Encoder leftEncoder, rightEncoder;
 	private AnalogChannel sonar;
 	private static double direction = 1;
 	private boolean isBalancedOnBridge = false;
 
 	public DriveTrain() {		
 		super("DriveTrain");
+		Debug.println("[DriveTrain] Initializing left jaguar on channel " + RobotMap.kDriveLeftMotor);
 		leftJag = new Jaguar(RobotMap.kDriveLeftMotor);
+		Debug.println("[DriveTrain] Initializing right jaguar on channel " + RobotMap.kDriveRightMotor);
 		rightJag = new Jaguar(RobotMap.kDriveRightMotor);
-		drive = new RobotDrive(leftJag, rightJag);
-		drive.setSafetyEnabled(false);
 
-		Debug.println("[robot] Initializing left drive motor on channel " + RobotMap.kDriveLeftMotor);
-		Debug.println("[robot] Initializing right drive motor on channel " + RobotMap.kDriveRightMotor);
-		
+		drive = new RobotDrive(leftJag, rightJag);
 		drive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
 		drive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
-				
-//		leftEncoder = new Encoder(RobotMap.kEncoderLeftA, RobotMap.kEncoderLeftB, false);
-//		rightEncoder = new Encoder(RobotMap.kEncoderRightA, RobotMap.kEncoderRightB, false);
-		
-//		leftEncoder.start();
-//		rightEncoder.start();
+		drive.setSafetyEnabled(false);
 		
 		sonar = new AnalogChannel(RobotMap.kSonarChannel);
+		Debug.println("[DriveTrain] Initializing sonar on channel " + RobotMap.kSonarChannel);
 		
 	}
 	

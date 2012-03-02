@@ -48,6 +48,8 @@ public class ShooterMove extends CommandBase {
 	protected void initialize() {
 		hasFinished = false;
 		shooter.resetGyro();
+		if(hasTimeout)
+			setTimeout(timeout);
 	}
 
 	protected void execute() {

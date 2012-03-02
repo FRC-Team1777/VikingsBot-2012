@@ -7,6 +7,7 @@
 
 package vikingrobotics.commands.arm;
 
+import vikingrobotics.commands.CommandBase;
 import vikingrobotics.commands.delay;
 import vikingrobotics.misc.Constants;
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -20,25 +21,26 @@ public class ArmRun extends CommandGroup implements Constants {
 		 */
 		addSequential(new ArmExtract(kArmSpeed, 1.0));
 		/*
-		 * Latch the arm
+		 * Latch the arm until sensor, with a timeout of 0.5 seconds
+		 * in case the sensor doesn't work.
 		 */
-		//addSequential(new ArmLatch(timeout));
+		addSequential(new ArmLatch(0.5));
 		/*
-		 * Wait for 5 seconds; give time to get on the bridge
+		 * Wait for 7 seconds; give time to get on the bridge
 		 */
-		addSequential(new delay(5.0));
+		addSequential(new delay(7.0));
 		/*
-		 * Unlatch the arm
+		 * Unlatch the arm for 0.42 seconds
 		 */
-		//addSequential(new ArmUnlatch(timeout));
+		addSequential(new ArmUnlatch(0.42));
 		/*
 		 * Retract back the arm all the way until sensor
 		 */
 		addSequential(new ArmRetract(kArmSpeed, 1.0));
 		/*
-		 * Extract the arm for 0.2 seconds at slow speed
+		 * Extract the arm for 0.3 seconds at slow speed
 		 */
-		addSequential(new ArmExtract(kArmSlowSpeed, 0.2));
+		addSequential(new ArmExtract(kArmSlowSpeed, 0.3));
 	}
 	
 }

@@ -35,12 +35,13 @@ public class Shooter extends Subsystem {
 	
 	public Shooter() {
 		super("Shooter");
+		Debug.println("[Shooter] Initializing FlyWheel jaguar on channel " + RobotMap.kShooterFlyWheelChannel);
 		flyWheel = new Jaguar(RobotMap.kShooterFlyWheelChannel);
+		Debug.println("[Shooter] Initializing Feeder jaguar on channel " + RobotMap.kShooterFeederChannel);
 		feeder = new Jaguar(RobotMap.kShooterFeederChannel);
+		Debug.println("[Shooter] Initializing Angler relay on channel " + RobotMap.kShooterAnglerChannel);
 		angler = new Relay(RobotMap.kShooterAnglerChannel);
-		Debug.println("[robot] Initializing shooter motor on channel " + RobotMap.kShooterFlyWheelChannel);
-		Debug.println("[robot] Initializing feeder motor on channel " + RobotMap.kShooterFeederChannel);
-		Debug.println("[robot] Initializing angler relay on channel " + RobotMap.kShooterAnglerChannel);
+		Debug.println("[Shooter] Initializing gyro on channel " + RobotMap.kGyroChannel);
 		gyro = new Gyro(RobotMap.kGyroChannel);
 		gyro.setSensitivity(0.007);
 		gyro.reset();

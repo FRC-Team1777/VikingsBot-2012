@@ -51,7 +51,8 @@ public class ArmUnlatch extends CommandBase {
 	}
 
 	protected void interrupted() {
-		Debug.println("[interrupted] " + getName());
+		Debug.print("\tTimeEnded: " + timeSinceInitialized());
+		Debug.println("\t[interrupted] " + getName());
 		arm.stopLatch();
 	}
 

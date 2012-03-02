@@ -24,7 +24,7 @@ public class Auton1 extends CommandGroup implements Constants {
 		super("Auton1");
 		addParallel(new GrabberRun());
 		addParallel(new ShooterRun(0.384));
-		addSequential(new ShooterMove(kShooterUp, 2.0));
+//		addSequential(new ShooterMove(kShooterUp, 2.0));
 		addSequential(new delay(1.0));
 		addSequential(new ShooterFeed(kTimeFeedOneBall));
 		addSequential(new delay(1.0));

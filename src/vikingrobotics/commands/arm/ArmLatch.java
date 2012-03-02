@@ -39,6 +39,8 @@ public class ArmLatch extends CommandBase {
 
 	protected void execute() {
 		arm.latch();
+		if (arm.getSensorLatch())
+			hasFinished = true;
 	}
 
 	protected boolean isFinished() {
@@ -51,7 +53,8 @@ public class ArmLatch extends CommandBase {
 	}
 
 	protected void interrupted() {
-		Debug.println("[interrupted] " + getName());
+		Debug.print("\tTimeEnded: " + timeSinceInitialized());
+		Debug.println("\t[interrupted] " + getName());
 		arm.stopLatch();
 	}
 

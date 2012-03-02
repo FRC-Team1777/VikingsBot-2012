@@ -19,7 +19,7 @@ import edu.wpi.first.wpilibj.DriverStationLCD.Line;
 public class Driverstation extends DriverStation implements Constants {
 	
 	private static Driverstation instance = null;
-	private DriverStationIO IO;
+//	private DriverStationIO IO;
 	private DriverStationLCD LCD;
 	private static final int kDefaultStartColumn = 1;
 	private static final String kDefaultMessage = "                         ";
@@ -34,13 +34,13 @@ public class Driverstation extends DriverStation implements Constants {
 	};
 	
 	public Driverstation() {
-		IO = new DriverStationIO();
+//		IO = new DriverStationIO();
 		LCD = DriverStationLCD.getInstance();
-		clearAll();
+		clearConsole();
 		print(1, "Initializing...");
 	}
 	
-	public static Driverstation getInstance() {
+	public static Driverstation getInstance2() {
 		if (instance == null)
 			instance = new Driverstation();
 		return instance;
@@ -72,7 +72,7 @@ public class Driverstation extends DriverStation implements Constants {
 	 * Clear a specified line.
 	 * @param lineNumber The line to be cleared.
 	 */
-	public void clear(int lineNumber) {
+	public void clearConsole(int lineNumber) {
 		print(lineNumber, kDefaultStartColumn, kDefaultMessage);
 	}
 	
@@ -80,9 +80,9 @@ public class Driverstation extends DriverStation implements Constants {
 	 * Clear all lines.
 	 * 
 	 */
-	public void clearAll() {
+	public void clearConsole() {
 		for (int i = 1; i <= 6; i++) {
-			print(i, kDefaultStartColumn, kDefaultMessage);
+			clearConsole(i);
 		}
 	}
 

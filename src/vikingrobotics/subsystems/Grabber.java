@@ -23,8 +23,8 @@ public class Grabber extends Subsystem implements Constants {
 	
 	public Grabber() {
 		super("Grabber");
+		Debug.println("[Grabber] Initializing ball grabber jaguar on channel " + RobotMap.kGrabberChannel);
 		grabberJag = new Jaguar(RobotMap.kGrabberChannel);
-		Debug.println("[robot] Initializing ball grabber motor on channel " + RobotMap.kGrabberChannel);
 	}
 	
 	protected void initDefaultCommand() {
