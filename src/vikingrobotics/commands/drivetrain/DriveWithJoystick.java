@@ -23,11 +23,16 @@ public class DriveWithJoystick extends CommandBase implements Constants {
 	}
 
 	protected void execute() {
-		if (oi.getDS().getDigitalIn(kDSDigitalInputArcadeDrive)) {
+		if (oi.getDS().getDS().getDigitalIn(kDSDigitalInputArcadeDrive)) {
 			drivetrain.arcadeDrive(oi.getJoystick().getAxis(kJoystickAxisY), oi.getJoystick().getAxis(kJoystickAxisX));
 		}
 		else {
-			drivetrain.tankDrive(oi.getGamePad().getAxis(kGamepadAxisLeftStickY), oi.getGamePad().getAxis(kGamepadAxisRightStickY));
+			if (oi.getDS().getDS().getDigitalIn(kDSDigitalInputSlowDrive)) {
+				drivetrain.tankDrive(oi.getGamePad().getAxis(kGamepadAxisLeftStickY) * 0.8, oi.getGamePad().getAxis(kGamepadAxisRightStickY) * 0.8);
+			}
+			else {
+				drivetrain.tankDrive(oi.getGamePad().getAxis(kGamepadAxisLeftStickY), oi.getGamePad().getAxis(kGamepadAxisRightStickY));
+			}
 		}
 	}
 

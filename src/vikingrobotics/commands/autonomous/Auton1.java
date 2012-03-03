@@ -20,17 +20,59 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class Auton1 extends CommandGroup implements Constants {
 	
+	private static double forwards = -1;
+	private static double backwards = 1;
+	private double SHOOTER_SPEED = 0.305;
+	private double DRIVE_SPEED = 0.7;
+	private double DRIVE_TIMEOUT = 3.0;
+	private double SHOOTER_WAIT_TIMEOUT = 5.0;
+	private double GRABBER_TIMEOUT = 2.5;
+	private double WAIT_ONE_SECOND = 1.0;
+	private double DRIVE_BACK_TIMEOUT = 3.0;
+	private double DRIVE_BACK_SPEED = 0.9;
+	
 	public Auton1() {
 		super("Auton1");
-		addParallel(new GrabberRun());
-		addParallel(new ShooterRun(0.384));
-//		addSequential(new ShooterMove(kShooterUp, 2.0));
-		addSequential(new delay(1.0));
+		/*
+		 * Run shooter at 0.305 speed
+		 */
+		addParallel(new ShooterRun(0.305));
+		/*
+		 * Drive forwards to the fender at 0.7 speed for 3 seconds
+		 */
+		addSequential(new DriveStraight(-0.7, 3.0));
+		/*
+		 * Run shooter again, in case it didn't before :/
+		 */
+		addParallel(new ShooterRun(0.305));
+		/*
+		 * Wait for 5 seconds until the shooter gets ready
+		 */
+		addSequential(new delay(5.0));
+		/*
+		 * Feed one ball
+		 */
 		addSequential(new ShooterFeed(kTimeFeedOneBall));
-		addSequential(new delay(1.0));
+		/*
+		 * Run grabber for 3.5 seconds to get the other ball to the shooter
+		 */
+		addSequential(new GrabberRun(), 2.5);
+		/*
+		 * Feed another ball
+		 */
 		addSequential(new ShooterFeed(kTimeFeedOneBall));
-		addParallel(new GrabberStop());
-		addSequential(new DriveStraight(-0.5, 3.0));
+		/*
+		 * Wait one second
+		 */
+		addSequential(new delay(1.0));
+		/*
+		 * Drive back as far as it can (time up)
+		 */
+		addSequential(new DriveStraight(0.8, 2.0));
+		/*
+		 * Maybe helps stop the previous command?
+		 */
+		addSequential(new delay(1.0));
 	}
 
 }

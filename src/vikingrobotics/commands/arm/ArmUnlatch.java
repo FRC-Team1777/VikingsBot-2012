@@ -35,6 +35,10 @@ public class ArmUnlatch extends CommandBase {
 			setTimeout(timeout);
 		}
 		Debug.print("\tTimeStarted: " + timeSinceInitialized());
+		if (!arm.getSensorExtracted()) {
+			hasFinished = true;
+			Debug.print("\t[ERROR] ARM NOT EXTRACTED!");
+		}
 	}
 
 	protected void execute() {

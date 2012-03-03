@@ -36,11 +36,11 @@ public class ShooterRun extends CommandBase implements Constants {
 
 	protected void execute() {
 		if(!hasSpeed) {
-			if(oi.getDS().getDigitalIn(kDSDigitalInputShooterOnJ2)) {
+			if(oi.getDS().getDS().getDigitalIn(kDSDigitalInputShooterOnJ2)) {
 				speed = oi.getJoystick2().getJoystickThrottle(kJoystick2AxisThrottle);
 			}
-			else if(oi.getDS().getDigitalIn(kDSDigitalInputShooterAI1)) {
-				speed = oi.getDS().getAnalogIn(1) / 5;
+			else if(oi.getDS().getDS().getDigitalIn(kDSDigitalInputShooterAI1)) {
+				speed = oi.getDS().getDS().getAnalogIn(1) / 5;
 			}
 			else {
 				speed = oi.getJoystick().getJoystickThrottle(kJoystickAxisThrottle);

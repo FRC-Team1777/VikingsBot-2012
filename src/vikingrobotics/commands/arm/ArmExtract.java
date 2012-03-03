@@ -36,7 +36,7 @@ public class ArmExtract extends CommandBase implements Constants {
 		Debug.print("[" + this.getName() + "] Speed: " + this.speed);
 		Debug.print("\tTimeout: " + timeout);
 		Debug.print("\tSensorExtracted: " + arm.getSensorExtracted());
-		Debug.println("\tSensorRetracted: " + arm.getSensorRetracted());
+		Debug.print("\tSensorRetracted: " + arm.getSensorRetracted());
 	}
 
 	protected void execute() {
@@ -50,11 +50,13 @@ public class ArmExtract extends CommandBase implements Constants {
 	}
 
 	protected void end() {
+		Debug.println("\tSensorExtracted: " + arm.getSensorExtracted());
 		if(sensorInvalid) Debug.println("[error] Sensor invalid when trying to extract");
 		arm.stop();
 	}
 
 	protected void interrupted() {
+		Debug.println("\tSensorExtracted: " + arm.getSensorExtracted());
 		Debug.println("[interrupted] " + getName());
 		arm.stop();
 	}

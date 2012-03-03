@@ -9,7 +9,6 @@ package vikingrobotics.subsystems;
 
 import vikingrobotics.misc.Debug;
 import vikingrobotics.misc.RobotMap;
-import vikingrobotics.commands.arm.ArmManual;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -38,10 +37,7 @@ public class Arm extends Subsystem {
 		sensorLatch = new DigitalInput(RobotMap.kArmSensorLatch);
 	}
 	
-	public void initDefaultCommand() {
-		// Don't want to do this unless emergency/testing
-//		setDefaultCommand(new ArmManual());
-	}
+	public void initDefaultCommand() {}
 	
 	public void latch() {
 		latcher.set(-0.8);

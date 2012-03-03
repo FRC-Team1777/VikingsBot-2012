@@ -35,6 +35,10 @@ public class ArmLatch extends CommandBase {
 			setTimeout(timeout);
 		}
 		Debug.print("\tTimeStarted: " + timeSinceInitialized());
+		if (!arm.getSensorExtracted() && !oi.getDS().getDS().getDigitalIn(5)) {
+			hasFinished = true;
+			Debug.print("\t[ERROR] ARM NOT EXTRACTED!");
+		}
 	}
 
 	protected void execute() {

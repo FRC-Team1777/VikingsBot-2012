@@ -31,7 +31,7 @@ public class DriveTrain extends Subsystem implements Constants {
 	private static double direction = 1;
 	private boolean isBalancedOnBridge = false;
 
-	public DriveTrain() {		
+	public DriveTrain() {
 		super("DriveTrain");
 		Debug.println("[DriveTrain] Initializing left jaguar on channel " + RobotMap.kDriveLeftMotor);
 		leftJag = new Jaguar(RobotMap.kDriveLeftMotor);
@@ -74,7 +74,7 @@ public class DriveTrain extends Subsystem implements Constants {
 	}
 	
 	public boolean canDrive() {
-		return !(CommandBase.oi.getDS().getDigitalIn(kDSDigitalInputDisableDrive));
+		return !(CommandBase.oi.getDS().getDS().getDigitalIn(kDSDigitalInputDisableDrive));
 	}
 	
 	public void tankDrive(double leftValue, double rightValue) {
@@ -94,7 +94,7 @@ public class DriveTrain extends Subsystem implements Constants {
 	public void straight(double speed) {
 		speed *= direction;
 		if(canDrive())
-			drive.tankDrive(speed, speed);
+			drive.tankDrive(speed, speed * 0.75);
 	}
 	
 }

@@ -25,7 +25,7 @@ public class RobotMap {
 	// Motor used by the arm
 	public static final int kArmChannel = 5;
 	public static final int kArmLatchChannel = 7;
-	public static final int kArmSensorExtracted = 1;
+	public static final int kArmSensorExtracted = 5;
 	public static final int kArmSensorRetracted = 2;
 	public static final int kArmSensorLatch = 3;
 

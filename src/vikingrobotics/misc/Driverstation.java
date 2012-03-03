@@ -7,19 +7,24 @@
 
 package vikingrobotics.misc;
 
+import edu.wpi.first.wpilibj.Dashboard;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStationEnhancedIO;
 import edu.wpi.first.wpilibj.DriverStationLCD;
+import edu.wpi.first.wpilibj.IDashboard;
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.DriverStationLCD.Line;
+import edu.wpi.first.wpilibj.communication.FRCCommonControlData;
 
 /**
  * 
  * @author Neal
  */
-public class Driverstation extends DriverStation implements Constants {
+public class Driverstation implements Constants {
 	
-	private static Driverstation instance = null;
-//	private DriverStationIO IO;
+	private DriverStation DS;
+	private DriverStationIO IO;
 	private DriverStationLCD LCD;
 	private static final int kDefaultStartColumn = 1;
 	private static final String kDefaultMessage = "                         ";
@@ -34,18 +39,16 @@ public class Driverstation extends DriverStation implements Constants {
 	};
 	
 	public Driverstation() {
-//		IO = new DriverStationIO();
+		DS = DriverStation.getInstance();
+		IO = new DriverStationIO();
 		LCD = DriverStationLCD.getInstance();
 		clearConsole();
 		print(1, "Initializing...");
 	}
 	
-	public static Driverstation getInstance2() {
-		if (instance == null)
-			instance = new Driverstation();
-		return instance;
-	}
-	
+	public DriverStation getDS() {
+		return DS;
+	}	
 	
 	/**
 	 * Prints the specified string on the User Messages starting from the begining.
@@ -85,5 +88,5 @@ public class Driverstation extends DriverStation implements Constants {
 			clearConsole(i);
 		}
 	}
-
+	
 }

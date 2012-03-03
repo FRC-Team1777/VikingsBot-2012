@@ -122,7 +122,7 @@ public class Shooter extends Subsystem {
 	}
 	
 	public void resetCurrentGyroAngle() {
-		this.currentAngle = defaultGyroAngle + ((CommandBase.oi.getDS().getAnalogIn(2) * 10) - 25);
+		this.currentAngle = defaultGyroAngle + ((CommandBase.oi.getDS().getDS().getAnalogIn(2) * 10) - 25);
 	}
 	
 	public void changingAngle() {

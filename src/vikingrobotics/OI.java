@@ -41,10 +41,8 @@ public class OI implements Constants {
 	private Gamepad gamepad;   // port 1
 	private Gamepad joystick;  // port 2
 	private Gamepad joystick2; // port 3
-//	private Relay cameraLED;
-	private DriverStation m_ds;
+	private Driverstation m_ds;
 	private SmartDashboard smartDashboard;
-	private CameraVision cam;
 	
 	// Non-physical buttons used with SmartDashboard
 	private InternalButton buttonShooterUp = new InternalButton();
@@ -68,17 +66,13 @@ public class OI implements Constants {
 	
 	
 	public OI() {
-		m_ds = Driverstation.getInstance();
-		if(getDS().isFMSAttached()) Debug.setMode(false);
-		if(getDS().getDigitalIn(kDSDigitalInputDebugMode)) Debug.setMode(false);
-		if(getDS().getTeamNumber() != kTeamNumber) Debug.println("[ERROR] Team number not "+ kTeamNumber +" on the Driver Station!");
-		
-//		cam = CameraVision.getInstance();
+		m_ds = new Driverstation();
+		if(getDS().getDS().getDigitalIn(kDSDigitalInputDebugMode)) Debug.setMode(false);
+		if(getDS().getDS().getTeamNumber() != kTeamNumber) Debug.println("[ERROR] Team number not "+ kTeamNumber +" on the Driver Station!");
 		
 		gamepad = new Gamepad(RobotMap.kJoystick1);
 		joystick = new Gamepad(RobotMap.kJoystick2);
 		joystick2 = new Gamepad(RobotMap.kJoystick3);
-//		cameraLED = new Relay(RobotMap.kCamLED);
 		
 		SmartDashboard.putData("ResetGyro", buttonResetGyro);
 		buttonResetGyro.whenPressed(new ResetGyro());
@@ -98,14 +92,14 @@ public class OI implements Constants {
 		// Shooter angler buttons
 		new JoystickButton(joystick, kJoystickButtonThumbTopLeft).whileHeld(new ShooterMove(kShooterUp));
 		new JoystickButton(joystick, kJoystickButtonThumbBottomLeft).whileHeld(new ShooterMove(kShooterDown));
+		new JoystickButton(joystick, kJoystickButtonTopLeft).whileHeld(new ShooterMove());
+		new JoystickButton(gamepad, kGamepadButtonBack).whileHeld(new ShooterMove());
 		SmartDashboard.putData("ShooterUp", buttonShooterUp);
 		SmartDashboard.putData("ShooterDn", buttonShooterDn);
-		SmartDashboard.putData("ShooterMove", buttonShooterMove2);
+		SmartDashboard.putData("ShooterMove", buttonShooterMove);
 		buttonShooterUp.whileHeld(new ShooterMove(kShooterUp));
 		buttonShooterDn.whileHeld(new ShooterMove(kShooterDown));
-		buttonShooterMove.setPressed(true);
 		buttonShooterMove.whenPressed(new ShooterMove());
-		buttonShooterMove2.whenPressed(new ShooterMove());
 		
 		// Feeder buttons
 		new JoystickButton(gamepad, kGamepadButtonA).whenPressed(new ShooterFeed(kTimeFeedOneBall));
@@ -115,6 +109,8 @@ public class OI implements Constants {
 		
 		// Shooter buttons
 		new JoystickButton(gamepad, kGamepadButtonY).whenPressed(new ShooterRun(0.384));
+		new JoystickButton(gamepad, kGamepadButtonX).whenPressed(new ShooterRun(0.305));
+		new JoystickButton(gamepad, kGamepadButtonStart).whenPressed(new ShooterStop());
 		new JoystickButton(joystick2, kJoystick2ButtonBottomLeft).whenPressed(new ShooterRun());
 		new JoystickButton(joystick2, kJoystick2ButtonBottomRight).whenPressed(new ShooterStop());
 		new JoystickButton(joystick, kJoystickButtonBottomLeft).whenPressed(new ShooterRun());
@@ -137,7 +133,7 @@ public class OI implements Constants {
 		// Grabber buttons
 		new JoystickButton(gamepad, kGamepadButtonRB).whileHeld(new GrabberReverse());
 		new JoystickButton(gamepad, kGamepadButtonB).whenPressed(new GrabberRun());
-		new JoystickButton(gamepad, kGamepadButtonX).whenPressed(new GrabberStop());
+//		new JoystickButton(gamepad, kGamepadButtonX).whenPressed(new GrabberStop());
 		new JoystickButton(joystick, kJoystickButtonMidLeft).whenPressed(new GrabberRun());
 		new JoystickButton(joystick, kJoystickButtonMidRight).whileHeld(new GrabberReverse());
 		SmartDashboard.putData("GrabberRun", buttonGrabberRun);
@@ -174,17 +170,9 @@ public class OI implements Constants {
 			default: return gamepad;
 		}
 	}
-
-//	public Relay getCamLED() {
-//		return cameraLED;
-//	}
 	
-	public DriverStation getDS() {
+	public Driverstation getDS() {
 		return m_ds;
-	}
-	
-	public CameraVision getCameraVision() {
-		return cam;
 	}
 
 }
