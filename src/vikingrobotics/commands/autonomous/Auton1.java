@@ -7,12 +7,9 @@
 
 package vikingrobotics.commands.autonomous;
 
-import vikingrobotics.commands.arm.ArmExtract;
 import vikingrobotics.commands.drivetrain.DriveStraight;
 import vikingrobotics.commands.grabber.GrabberRun;
-import vikingrobotics.commands.grabber.GrabberStop;
 import vikingrobotics.commands.shooter.ShooterFeed;
-import vikingrobotics.commands.shooter.ShooterMove;
 import vikingrobotics.commands.shooter.ShooterRun;
 import vikingrobotics.misc.Constants;
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -76,7 +73,7 @@ public class Auton1 extends CommandGroup implements Constants {
 		addSequential(new WaitCommand(WAIT_ONE_SECOND));
 		/*
 		 * Drive back as far as it can (time up)
-		 * TODO: Why doesn't it stop driving after timeout?
+		 * TODO: Why doesn't the DriveStraight command stop after timeout?
 		 */
 		addSequential(new PrintCommand("[auton1] Driving back at speed: " + DRIVE_BACK_SPEED + " and timeout: " + DRIVE_BACK_TIMEOUT));
 		addSequential(new DriveStraight(backwards * DRIVE_BACK_SPEED, DRIVE_BACK_TIMEOUT));

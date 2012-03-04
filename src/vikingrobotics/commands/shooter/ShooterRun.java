@@ -33,13 +33,19 @@ public class ShooterRun extends CommandBase implements Constants {
 	}
 
 	protected void execute() {
-		if(!hasSpeed) {
+		/*
+		 * If we didn't call ShooterRun with speed, get speed from the joystick throttle.
+		 */
+		if (!hasSpeed) {
+			/*
+			 * If DigitalInput for ShooterOnJ2 on DS is on, get speed from Attack3 Throttle
+			 */
 			if(oi.getDS().getDS().getDigitalIn(kDSDigitalInputShooterOnJ2)) {
 				speed = oi.getJoystick2().getJoystickThrottle(kJoystick2AxisThrottle);
 			}
-			else if(oi.getDS().getDS().getDigitalIn(kDSDigitalInputShooterAI1)) {
-				speed = oi.getDS().getDS().getAnalogIn(1) / 5;
-			}
+			/*
+			 * If DigitalInput for ShooterOnJ2 on DS is off, get speed from Extreme 3D Throttle
+			 */
 			else {
 				speed = oi.getJoystick().getJoystickThrottle(kJoystickAxisThrottle);
 			}
