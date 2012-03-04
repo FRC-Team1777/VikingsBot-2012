@@ -35,6 +35,9 @@ public class ShooterFeed extends CommandBase {
 		if(shooter.getSpeed() > 0.2 || forceFeed) {
 			shooter.setFeederForward();
 		}
+		else {
+			Debug.print("\t[ERROR]: Shooter not fast enough! " + shooter.getSpeed());
+		}
 	}
 
 	protected boolean isFinished() {
