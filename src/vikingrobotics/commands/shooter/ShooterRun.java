@@ -7,14 +7,12 @@
 
 package vikingrobotics.commands.shooter;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import vikingrobotics.misc.Constants;
 import vikingrobotics.misc.Debug;
 import vikingrobotics.commands.CommandBase;
 
 public class ShooterRun extends CommandBase implements Constants {
 
-	private boolean hasFinished = false;
 	private boolean hasSpeed = false;
 	private double speed = 0.0;
 	
@@ -47,11 +45,10 @@ public class ShooterRun extends CommandBase implements Constants {
 			}
 		}
 		shooter.run(this.speed);
-		SmartDashboard.putDouble("ShooterSpeed", this.speed);
 	}
 
 	protected boolean isFinished() {
-		return isTimedOut() || hasFinished;
+		return isTimedOut();
 	}
 
 	protected void end() {
