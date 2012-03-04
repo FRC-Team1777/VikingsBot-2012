@@ -29,8 +29,8 @@ public class Auton1 extends CommandGroup implements Constants {
 	private double SHOOTER_WAIT_TIMEOUT = 5.0;
 	private double GRABBER_TIMEOUT = 2.5;
 	private double WAIT_ONE_SECOND = 1.0;
-	private double DRIVE_BACK_TIMEOUT = 3.0;
 	private double DRIVE_BACK_SPEED = 0.9;
+	private double DRIVE_BACK_TIMEOUT = 3.0;
 	
 	public Auton1() {
 		super("Auton1");
