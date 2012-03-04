@@ -79,7 +79,7 @@ public class Auton1 extends CommandGroup implements Constants {
 		 * TODO: Why doesn't it stop driving after timeout?
 		 */
 		addSequential(new PrintCommand("[auton1] Driving back at speed: " + DRIVE_BACK_SPEED + " and timeout: " + DRIVE_BACK_TIMEOUT));
-		addSequential(new DriveStraight(DRIVE_BACK_SPEED, DRIVE_BACK_TIMEOUT));
+		addSequential(new DriveStraight(backwards * DRIVE_BACK_SPEED, DRIVE_BACK_TIMEOUT));
 		/*
 		 * Maybe helps stop the previous command?
 		 */
