@@ -59,9 +59,7 @@ public class OI implements Constants {
 	private InternalButton buttonShooterRun06 = new InternalButton();
 	private InternalButton buttonShooterRun08 = new InternalButton();
 	private InternalButton buttonShooterRun10 = new InternalButton();
-	private InternalButton buttonShooterStop = new InternalButton();
-	private InternalButton buttonResetGyro = new InternalButton();
-	
+	private InternalButton buttonShooterStop = new InternalButton();	
 	
 	public OI() {
 		m_ds = new Driverstation();
