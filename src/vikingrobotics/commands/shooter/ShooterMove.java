@@ -19,19 +19,19 @@ public class ShooterMove extends CommandBase {
 	private boolean firstTimeStopped = false;
 	private double timeout;
 	private double speed = 0.0;
-    public static class Direction {
-        public final int value;
-        public static final Direction kStop = new Direction(0);
-        public static final Direction kUp = new Direction(1);
-        public static final Direction kDown = new Direction(-1);
-        private Direction(int value) {
-            this.value = value;
-        }
-    }
-    
-    public ShooterMove() {
+	public static class Direction {
+		public final int value;
+		public static final Direction kStop = new Direction(0);
+		public static final Direction kUp = new Direction(1);
+		public static final Direction kDown = new Direction(-1);
+		private Direction(int value) {
+			this.value = value;
+		}
+	}
+	
+	public ShooterMove() {
 		super("ShooterMove");
-    }
+	}
 	
 	public ShooterMove(double speed) {
 		this();
