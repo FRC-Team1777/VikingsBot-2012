@@ -24,7 +24,7 @@ public class Shooter extends Subsystem {
 	private Jaguar flyWheel;
 	private Jaguar feeder;
 	private Relay angler;
-	private double speed = 1.0;
+	private double speed = 0.0;
 	
 	public Shooter() {
 		super("Shooter");
@@ -41,30 +41,18 @@ public class Shooter extends Subsystem {
 		setDefaultCommand(new ShooterMove());		
 	}
 	
-	// Set manual speed for the flyWheel
 	public void setSpeed(double speed) {
 		this.speed = speed;
 	}
+	
 	public double getSpeed() {
 		return this.speed;
 	}
-	public double getActualSpeed() {
-		return flyWheel.get();
-	}
 	
 	public void run() {
-//		flyWheel.set(this.speed);
-//limit is the amount of change you will allow every iteration
-//limitedJoystick is the rate-limited joystick value you use to control your motors.
-		double limit = 0.075;
-		double joystick = this.speed;
-		double limitedJoystick = flyWheel.getSpeed();
-		double change = joystick - limitedJoystick;
-		if (change>limit) change = limit;
-		else if (change<-limit) change = -limit;
-		limitedJoystick += change;
-		flyWheel.set(limitedJoystick);
+		flyWheel.set(this.speed);
 	}
+	
 	public void run(double speed) {
 		setSpeed(speed);
 		this.run();

@@ -28,16 +28,16 @@ public class Arm extends Subsystem implements Constants {
 	
 	public Arm() {
 		super("Arm");
-		arm = new Jaguar(RobotMap.kArmChannel);
-		latcher = new Jaguar(RobotMap.kArmLatchChannel);
-		sensorExtracted = new DigitalInput(RobotMap.kArmSensorExtracted);
-		sensorRetracted = new DigitalInput(RobotMap.kArmSensorRetracted);
-		sensorLatch = new DigitalInput(RobotMap.kArmSensorLatch);
 		Debug.println("[Arm] Initializing arm motor on channel " + RobotMap.kArmChannel);
+		arm = new Jaguar(RobotMap.kArmChannel);
 		Debug.println("[Arm] Initializing arm latch motor on channel " + RobotMap.kArmLatchChannel);
+		latcher = new Jaguar(RobotMap.kArmLatchChannel);
 		Debug.println("[Arm] Initializing arm sensor extracted on DIO " + RobotMap.kArmSensorExtracted);
+		sensorExtracted = new DigitalInput(RobotMap.kArmSensorExtracted);
 		Debug.println("[Arm] Initializing arm sensor retracted on DIO " + RobotMap.kArmSensorRetracted);
+		sensorRetracted = new DigitalInput(RobotMap.kArmSensorRetracted);
 		Debug.println("[Arm] Initializing arm sensor latch on DIO " + RobotMap.kArmSensorLatch);
+		sensorLatch = new DigitalInput(RobotMap.kArmSensorLatch);
 	}
 	
 	public void initDefaultCommand() {}
