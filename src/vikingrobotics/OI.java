@@ -15,11 +15,11 @@ import vikingrobotics.commands.arm.ArmUnlatch;
 import vikingrobotics.commands.grabber.GrabberReverse;
 import vikingrobotics.commands.grabber.GrabberRun;
 import vikingrobotics.commands.grabber.GrabberStop;
+import vikingrobotics.commands.shooter.ResetGyro;
 import vikingrobotics.commands.shooter.ShooterFeed;
 import vikingrobotics.commands.shooter.ShooterMove;
 import vikingrobotics.commands.shooter.ShooterRun;
 import vikingrobotics.commands.shooter.ShooterStop;
-import vikingrobotics.commands.ResetGyro;
 import vikingrobotics.misc.Constants;
 import vikingrobotics.misc.Debug;
 import vikingrobotics.misc.Driverstation;
@@ -104,7 +104,7 @@ public class OI implements Constants {
 		new JoystickButton(gamepad, kGamepadButtonA).whenPressed(new ShooterFeed(kTimeFeedOneBall));
 		new JoystickButton(joystick, kJoystickButtonTrigger).whenPressed(new ShooterFeed(kTimeFeedOneBall));
 		SmartDashboard.putData("FeedBall", buttonFeedBall);
-		buttonFeedBall.whenPressed(new ShooterFeed(kTimeFeedOneBall, true));
+		buttonFeedBall.whenPressed(new ShooterFeed(kTimeFeedOneBall, kShooterForceFeed));
 		
 		// Shooter buttons
 		new JoystickButton(gamepad, kGamepadButtonY).whenPressed(new ShooterRun(0.384));

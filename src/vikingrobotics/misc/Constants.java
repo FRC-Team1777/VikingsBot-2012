@@ -40,6 +40,7 @@ public interface Constants {
 	public static final double kTimeFeedOneBall = 0.4;
 	public static final double kShooterUp = 1.0;
 	public static final double kShooterDown = -1.0;
+	public static final boolean kShooterForceFeed = true;
 
 	public static final double kJoystickThreshold = 0.2;
 	

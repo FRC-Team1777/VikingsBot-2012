@@ -5,34 +5,35 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package vikingrobotics.commands;
+package vikingrobotics.commands.shooter;
 
+import vikingrobotics.commands.CommandBase;
 import vikingrobotics.misc.Debug;
 
-public class delay extends CommandBase {
+public class ResetGyro extends CommandBase {
 
-	private double timeout;
-
-	public delay(double timeout) {
-		this.timeout = timeout;
+	private boolean hasFinished = false;
+	
+	public ResetGyro() {
+		super("ResetGyro");
 	}
 
 	protected void initialize() {
-		Debug.print("[delay] Timeout: " + timeout);
-		setTimeout(timeout);
 	}
 
 	protected void execute() {
+		shooter.resetCurrentGyroAngle();
+		hasFinished = true;
 	}
 
 	protected boolean isFinished() {
-		return isTimedOut();
+		return hasFinished;
 	}
 
-	protected void end() {
-		Debug.println("\t\tDONE");
-	}
+	protected void end() {}
 
-	protected void interrupted() {}
+	protected void interrupted() {
+		Debug.println("[interrupted] " + getName());
+	}
 
 }

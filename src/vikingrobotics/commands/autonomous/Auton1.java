@@ -7,7 +7,6 @@
 
 package vikingrobotics.commands.autonomous;
 
-import vikingrobotics.commands.delay;
 import vikingrobotics.commands.arm.ArmExtract;
 import vikingrobotics.commands.drivetrain.DriveStraight;
 import vikingrobotics.commands.grabber.GrabberRun;
@@ -17,6 +16,8 @@ import vikingrobotics.commands.shooter.ShooterMove;
 import vikingrobotics.commands.shooter.ShooterRun;
 import vikingrobotics.misc.Constants;
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.PrintCommand;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 
 public class Auton1 extends CommandGroup implements Constants {
 	
@@ -36,43 +37,54 @@ public class Auton1 extends CommandGroup implements Constants {
 		/*
 		 * Run shooter at 0.305 speed
 		 */
-		addParallel(new ShooterRun(0.305));
+		addSequential(new PrintCommand("[auton1] Running shooter at speed: " + SHOOTER_SPEED));
+		addParallel(new ShooterRun(SHOOTER_SPEED));
 		/*
 		 * Drive forwards to the fender at 0.7 speed for 3 seconds
 		 */
-		addSequential(new DriveStraight(-0.7, 3.0));
+		addSequential(new PrintCommand("[auton1] Driving to fender at speed: " + DRIVE_SPEED + " and timeout: " + DRIVE_TIMEOUT));
+		addSequential(new DriveStraight(forwards * DRIVE_SPEED, DRIVE_TIMEOUT));
 		/*
 		 * Run shooter again, in case it didn't before :/
 		 */
-		addParallel(new ShooterRun(0.305));
+		addSequential(new PrintCommand("[auton1] Running shooter again at speed: " + SHOOTER_SPEED));
+		addParallel(new ShooterRun(SHOOTER_SPEED));
 		/*
 		 * Wait for 5 seconds until the shooter gets ready
 		 */
-		addSequential(new delay(5.0));
+		addSequential(new PrintCommand("[auton1] Waiting " + SHOOTER_WAIT_TIMEOUT + " seconds for the shooter to speed up"));
+		addSequential(new WaitCommand(SHOOTER_WAIT_TIMEOUT));
 		/*
 		 * Feed one ball
 		 */
+		addSequential(new PrintCommand("[auton1] Feeding one ball"));
 		addSequential(new ShooterFeed(kTimeFeedOneBall));
 		/*
 		 * Run grabber for 3.5 seconds to get the other ball to the shooter
 		 */
-		addSequential(new GrabberRun(), 2.5);
+		addSequential(new PrintCommand("[auton1] Running ball grabber at timeout: " + GRABBER_TIMEOUT));
+		addSequential(new GrabberRun(), GRABBER_TIMEOUT);
 		/*
 		 * Feed another ball
 		 */
+		addSequential(new PrintCommand("[auton1] Feeding another ball"));
 		addSequential(new ShooterFeed(kTimeFeedOneBall));
 		/*
 		 * Wait one second
 		 */
-		addSequential(new delay(1.0));
+		addSequential(new PrintCommand("[auton1] Waiting " + WAIT_ONE_SECOND + " second(s)"));
+		addSequential(new WaitCommand(WAIT_ONE_SECOND));
 		/*
 		 * Drive back as far as it can (time up)
+		 * TODO: Why doesn't it stop driving after timeout?
 		 */
-		addSequential(new DriveStraight(0.8, 2.0));
+		addSequential(new PrintCommand("[auton1] Driving back at speed: " + DRIVE_BACK_SPEED + " and timeout: " + DRIVE_BACK_TIMEOUT));
+		addSequential(new DriveStraight(DRIVE_BACK_SPEED, DRIVE_BACK_TIMEOUT));
 		/*
 		 * Maybe helps stop the previous command?
 		 */
-		addSequential(new delay(1.0));
+		addSequential(new PrintCommand("[auton1] Waiting " + WAIT_ONE_SECOND + " second(s)"));
+		addSequential(new WaitCommand(WAIT_ONE_SECOND));
 	}
 
 }

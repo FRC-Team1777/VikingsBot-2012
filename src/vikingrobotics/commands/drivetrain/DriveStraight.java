@@ -45,10 +45,12 @@ public class DriveStraight extends CommandBase {
 
 	protected void end() {
 		Debug.println("\t\tDONE");
+		drivetrain.stop();
 	}
 
 	protected void interrupted() {
 		Debug.println("[interrupted] " + getName());
+		drivetrain.stop();
 	}
 
 }

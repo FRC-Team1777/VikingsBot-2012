@@ -16,49 +16,47 @@ import vikingrobotics.commands.shooter.ShooterMove;
 import vikingrobotics.commands.shooter.ShooterRun;
 import vikingrobotics.commands.shooter.ShooterStop;
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.PrintCommand;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 
 public class SystemCheck extends CommandGroup implements Constants {
 	
 	public SystemCheck() {
 		
-		Debug.println("[SystemCheck] --- SYSTEM CHECK! ---");
+		addSequential(new PrintCommand("[SystemCheck] --- SYSTEM CHECK! ---"));
 		
 		// Grabber
-		Debug.print("[SystemCheck] Grabber Run");
+		addSequential(new PrintCommand("[SystemCheck] Grabber Run"));
 		addSequential(new GrabberRun(1.0));
-		Debug.println("\t\tDONE");
-		Debug.print("[SystemCheck] Grabber Reverse");
+		addSequential(new PrintCommand("[SystemCheck] Grabber Reverse"));
 		addSequential(new GrabberReverse(1.0));
-		Debug.println("\tDONE");
-		Debug.print("[SystemCheck] Grabber Stop");
+		addSequential(new PrintCommand("[SystemCheck] Grabber Stop"));
 		addSequential(new GrabberStop());
-		Debug.println("\t\tDONE");
+		addSequential(new WaitCommand(1.0));
 		
 		// Shooter
-		Debug.print("[SystemCheck] Shooter Run");
+		addSequential(new PrintCommand("[SystemCheck] Shooter Run"));
 		addSequential(new ShooterRun(0.384), 3.0);
-		Debug.println("\t\tDONE");
-		Debug.print("[SystemCheck] Shooter Stop");
+		addSequential(new PrintCommand("[SystemCheck] Shooter Stop"));
 		addSequential(new ShooterStop());
-		Debug.println("\t\tDONE");
+		addSequential(new WaitCommand(1.0));
 		
 		// Feeder
-		Debug.print("[SystemCheck] Feeder Run");
-		addSequential(new ShooterFeed(kTimeFeedOneBall, true));
-		Debug.println("\t\tDONE");
+		addSequential(new PrintCommand("[SystemCheck] Feeder Run"));
+		addSequential(new ShooterFeed(kTimeFeedOneBall, kShooterForceFeed));
+		addSequential(new WaitCommand(1.0));
 		
 		// Angler
-		Debug.print("[SystemCheck] Shooter Up");
+		addSequential(new PrintCommand("[SystemCheck] Shooter Up"));
 		addSequential(new ShooterMove(kShooterUp, 1.0));
-		Debug.println("\t\tDONE");
-		Debug.print("[SystemCheck] Shooter Down");
+		addSequential(new PrintCommand("[SystemCheck] Shooter Down"));
 		addSequential(new ShooterMove(kShooterDown, 1.0));
-		Debug.println("\t\tDONE");
+		addSequential(new WaitCommand(1.0));
 		
 		// Arm
-		Debug.print("[SystemCheck] Arm Run");
+		addSequential(new PrintCommand("[SystemCheck] Arm Run"));
 		addSequential(new ArmRun());
-		Debug.println("\t\t\tDONE");
+		addSequential(new WaitCommand(1.0));
 		
 	}
 
