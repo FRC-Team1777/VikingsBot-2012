@@ -24,6 +24,7 @@ import vikingrobotics.subsystems.Shooter;
 public abstract class CommandBase extends Command {
 	
 	public static OI oi;
+	
 	// Create a single static instance of all of your subsystems
 	public static DriveTrain drivetrain = new DriveTrain();
 	public static Shooter shooter = new Shooter();
