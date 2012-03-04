@@ -13,7 +13,6 @@ import vikingrobotics.commands.CommandBase;
 public class ShooterFeed extends CommandBase {
 	
 	private boolean forceFeed = false;
-	private boolean hasFinished = false;
 	private double timeout;
 	
 	public ShooterFeed(double timeout) {
@@ -39,7 +38,7 @@ public class ShooterFeed extends CommandBase {
 	}
 
 	protected boolean isFinished() {
-		return hasFinished || isTimedOut();
+		return isTimedOut();
 	}
 
 	protected void end() {
