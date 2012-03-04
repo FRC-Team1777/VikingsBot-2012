@@ -13,8 +13,6 @@ import vikingrobotics.misc.RobotMap;
 import vikingrobotics.commands.CommandBase;
 import vikingrobotics.commands.drivetrain.DriveWithJoystick;
 import edu.wpi.first.wpilibj.AnalogChannel;
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -28,8 +26,6 @@ public class DriveTrain extends Subsystem implements Constants {
 	private RobotDrive drive;
 	private Jaguar leftJag, rightJag;
 	private AnalogChannel sonar;
-	private static double direction = 1;
-	private boolean isBalancedOnBridge = false;
 
 	public DriveTrain() {
 		super("DriveTrain");
@@ -45,7 +41,6 @@ public class DriveTrain extends Subsystem implements Constants {
 		
 		sonar = new AnalogChannel(RobotMap.kSonarChannel);
 		Debug.println("[DriveTrain] Initializing sonar on channel " + RobotMap.kSonarChannel);
-		
 	}
 	
 	public void initDefaultCommand() {
@@ -61,14 +56,6 @@ public class DriveTrain extends Subsystem implements Constants {
 		return sonar;
 	}
 	
-	public void setForwards() {
-		direction = 1;
-	}
-	
-	public void setBackwards() {
-		direction = -1;
-	}
-	
 	public void stop() {
 		drive.tankDrive(0.0, 0.0);
 	}
@@ -77,22 +64,36 @@ public class DriveTrain extends Subsystem implements Constants {
 		return !(CommandBase.oi.getDS().getDS().getDigitalIn(kDSDigitalInputDisableDrive));
 	}
 	
+	/**
+	 * Provide tank steering using the stored robot configuration.
+	 * This function lets you directly provide joystick values from any source.
+	 * @param leftValue The value of the left stick.
+	 * @param rightValue The value of the right stick.
+	 */
 	public void tankDrive(double leftValue, double rightValue) {
-		leftValue *= direction;
-		rightValue *= direction;
 		if(canDrive())
 			drive.tankDrive(leftValue, rightValue);
 	}
 	
+	/**
+	 * Arcade drive implements single stick driving.
+	 * This function lets you directly provide joystick values from any source.
+	 * @param moveValue The value to use for fowards/backwards
+	 * @param rotateValue The value to use for the rotate right/left
+	 */
 	public void arcadeDrive(double moveValue, double rotateValue) {
-		moveValue *= direction;
-		rotateValue *= direction;
 		if(canDrive())
 			drive.arcadeDrive(moveValue, rotateValue);
 	}
 	
+	/**
+	 * Drive in a straight direction. Since the left side has smaller sprocket, it has more
+	 * torque, thus less speed. So, in order for it to drive straight, right motor needs to
+	 * drive at 75% speed than the left motor. (Found 75% with trial and error)
+	 * 
+	 * @param speed The speed to drive the robot at.
+	 */
 	public void straight(double speed) {
-		speed *= direction;
 		if(canDrive())
 			drive.tankDrive(speed, speed * 0.75);
 	}
