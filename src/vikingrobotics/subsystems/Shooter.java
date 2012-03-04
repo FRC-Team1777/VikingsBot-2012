@@ -7,11 +7,9 @@
 
 package vikingrobotics.subsystems;
 
-import vikingrobotics.commands.CommandBase;
 import vikingrobotics.commands.shooter.ShooterMove;
 import vikingrobotics.misc.Debug;
 import vikingrobotics.misc.RobotMap;
-import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.command.Subsystem;

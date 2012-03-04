@@ -14,7 +14,6 @@ import vikingrobotics.commands.arm.ArmRun;
 import vikingrobotics.commands.arm.ArmUnlatch;
 import vikingrobotics.commands.grabber.GrabberReverse;
 import vikingrobotics.commands.grabber.GrabberRun;
-import vikingrobotics.commands.grabber.GrabberStop;
 import vikingrobotics.commands.shooter.ShooterFeed;
 import vikingrobotics.commands.shooter.ShooterMove;
 import vikingrobotics.commands.shooter.ShooterRun;
@@ -24,12 +23,8 @@ import vikingrobotics.misc.Debug;
 import vikingrobotics.misc.Driverstation;
 import vikingrobotics.misc.Gamepad;
 import vikingrobotics.misc.RobotMap;
-import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.Gyro;
-import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.buttons.InternalButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.camera.AxisCamera;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class OI implements Constants {
