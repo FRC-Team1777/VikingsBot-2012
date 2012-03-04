@@ -36,11 +36,10 @@ public class OI implements Constants {
 	
 	private static OI instance = null;
 	
-	private Gamepad gamepad;   // port 1
-	private Gamepad joystick;  // port 2
-	private Gamepad joystick2; // port 3
+	private Gamepad gamepad;
+	private Gamepad joystick;
+	private Gamepad joystick2;
 	private Driverstation m_ds;
-	private SmartDashboard smartDashboard;
 	
 	// Non-physical buttons used with SmartDashboard
 	private InternalButton buttonShooterUp = new InternalButton();
