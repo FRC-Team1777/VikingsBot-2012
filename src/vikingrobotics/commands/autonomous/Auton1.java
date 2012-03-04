@@ -16,6 +16,19 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.PrintCommand;
 import edu.wpi.first.wpilibj.command.WaitCommand;
 
+/**
+ * Autonomous setting 1
+ * 
+ * 	-> Drive forwards until fender
+ *  -> Run the shooter at speed 0.305
+ *  -> Wait 5 seconds
+ *  -> Shoot 1 ball
+ *  -> Get the other ball to shooter
+ *  -> Shoot the other ball
+ *  -> Drive back
+ *  
+ * @author Neal
+ */
 public class Auton1 extends CommandGroup implements Constants {
 	
 	private static double forwards = -1;
