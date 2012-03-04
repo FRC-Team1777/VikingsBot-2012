@@ -28,7 +28,7 @@ public class GrabberReverse extends CommandBase {
 
 	protected void initialize() {
 		Debug.print("[" + this.getName() + "] initialize");
-		if(hasTimeout) {
+		if (hasTimeout) {
 			Debug.print("\tTimeout: " + timeout);
 			setTimeout(timeout);
 		}
