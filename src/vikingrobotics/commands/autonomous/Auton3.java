@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 /**
  * Autonomous setting 3
  * 
- * 	-> Drive backwards for 3 seconds
+ *  -> Drive backwards for 3 seconds
  *  
  * @author Neal
  */

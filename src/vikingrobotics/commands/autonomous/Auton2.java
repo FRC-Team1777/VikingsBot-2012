@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 /**
  * Autonomous setting 2
  * 
- * 	-> Drive towards the bridge
+ *  -> Drive towards the bridge
  *  -> Run the arm and latch it
  *  -> Drive slowly towards the bridge to tip it
  *  -> Wait 3 seconds

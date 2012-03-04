@@ -19,7 +19,7 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 /**
  * Autonomous setting 1
  * 
- * 	-> Drive forwards until fender
+ *  -> Drive forwards until fender
  *  -> Run the shooter at speed 0.305
  *  -> Wait 5 seconds
  *  -> Shoot 1 ball
