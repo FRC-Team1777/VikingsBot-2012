@@ -7,7 +7,6 @@
 
 package vikingrobotics.commands.arm;
 
-import vikingrobotics.commands.CommandBase;
 import vikingrobotics.commands.delay;
 import vikingrobotics.misc.Constants;
 import edu.wpi.first.wpilibj.command.CommandGroup;

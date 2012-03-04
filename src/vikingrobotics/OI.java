@@ -20,7 +20,6 @@ import vikingrobotics.commands.shooter.ShooterMove;
 import vikingrobotics.commands.shooter.ShooterRun;
 import vikingrobotics.commands.shooter.ShooterStop;
 import vikingrobotics.commands.ResetGyro;
-import vikingrobotics.misc.CameraVision;
 import vikingrobotics.misc.Constants;
 import vikingrobotics.misc.Debug;
 import vikingrobotics.misc.Driverstation;
@@ -81,9 +80,9 @@ public class OI implements Constants {
 		new JoystickButton(gamepad, kGamepadButtonLB).whenPressed(new ArmRun());
 		new JoystickButton(joystick, kJoystickButtonThumbBottomRight).whenPressed(new ArmRun());
 		new JoystickButton(joystick2, 1).whenPressed(new ArmRun());
-		new JoystickButton(joystick2, 2).whenPressed(new ArmExtract(kArmSpeed, 1.0));
-		new JoystickButton(joystick2, 3).whenPressed(new ArmRetract(kArmSpeed, 1.0));
-		new JoystickButton(joystick2, 4).whenPressed(new ArmExtract(kArmSlowSpeed, 0.3));
+		new JoystickButton(joystick2, 2).whenPressed(new ArmExtract(kArmSpeed, 3.5));
+		new JoystickButton(joystick2, 3).whenPressed(new ArmRetract(kArmSpeed, 2.0));
+		new JoystickButton(joystick2, 4).whenPressed(new ArmExtract(kArmSlowSpeed, 0.17));
 		new JoystickButton(joystick2, 5).whileHeld(new ArmLatch());
 		new JoystickButton(joystick2, 6).whileHeld(new ArmUnlatch());
 		SmartDashboard.putData("ArmRun", buttonArmRun);
@@ -133,14 +132,12 @@ public class OI implements Constants {
 		// Grabber buttons
 		new JoystickButton(gamepad, kGamepadButtonRB).whileHeld(new GrabberReverse());
 		new JoystickButton(gamepad, kGamepadButtonB).whenPressed(new GrabberRun());
-//		new JoystickButton(gamepad, kGamepadButtonX).whenPressed(new GrabberStop());
 		new JoystickButton(joystick, kJoystickButtonMidLeft).whenPressed(new GrabberRun());
 		new JoystickButton(joystick, kJoystickButtonMidRight).whileHeld(new GrabberReverse());
 		SmartDashboard.putData("GrabberRun", buttonGrabberRun);
 		SmartDashboard.putData("GrabberStop", buttonGrabberStop);
 		buttonGrabberRun.whenPressed(new GrabberRun());
 		buttonGrabberStop.whileHeld(new GrabberReverse());
-//		SmartDashboard.putData("GrabberStop", new InternalButton().whileHeld(new GrabberReverse()));
 		
 	}
 	

@@ -9,8 +9,6 @@ package vikingrobotics;
 
 import vikingrobotics.commands.CommandBase;
 import vikingrobotics.commands.autonomous.Auton1;
-import vikingrobotics.commands.shooter.ShooterMove;
-import vikingrobotics.commands.shooter.ShooterRun;
 import vikingrobotics.misc.Constants;
 import vikingrobotics.misc.Debug;
 import vikingrobotics.misc.Utils;
@@ -29,7 +27,6 @@ public class VikingsBot extends IterativeRobot implements Constants {
 	private Command autonomousCommand;
 	private Timer timer = new Timer();
 	private boolean firstTime = true;
-	private boolean firstTimeTeleOp = true;
 	
 	/**
 	 * Robot-wide initialization code which will be called when the robot is first powered on.
@@ -52,7 +49,8 @@ public class VikingsBot extends IterativeRobot implements Constants {
 	public void autonomousInit() {
 		Debug.println("[mode] Autonomous");
 		commonInit();
-//		autonomousCommand.start();
+		// Don't want autonomous unless at competition.
+		//autonomousCommand.start();
 	}
 
 	/**
@@ -79,14 +77,6 @@ public class VikingsBot extends IterativeRobot implements Constants {
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 		commonInit();
-		if (firstTimeTeleOp) {
-			new ShooterMove().start();
-			firstTimeTeleOp = false;
-		}
-		if (CommandBase.oi.getDS().getDS().isFMSAttached()) {
-			Debug.println("[tele-op] FMS Attached!");
-			new ShooterRun(0.305).start();
-		}
 	}
 
 	/**
@@ -138,7 +128,7 @@ public class VikingsBot extends IterativeRobot implements Constants {
 	}
 	
 	/**
-	 * Update the SmartDashboard and the UserMessages from one place to avoid confusion.
+	 * Update the SmartDashboard, DriverStation and the UserMessages from one place to avoid confusion.
 	 */
 	public void updateDashboard() {
 		SmartDashboard.putDouble("Battery Percent", Utils.scaleBatteryVoltage(CommandBase.oi.getDS().getDS().getBatteryVoltage()));
@@ -150,14 +140,9 @@ public class VikingsBot extends IterativeRobot implements Constants {
 		SmartDashboard.putBoolean("SensorExtracted", CommandBase.arm.getSensorExtracted());
 		SmartDashboard.putBoolean("SensorRetracted", CommandBase.arm.getSensorRetracted());
 		SmartDashboard.putBoolean("SensorLatch", CommandBase.arm.getSensorLatch());
-//		CommandBase.oi.getDS().print(2, "2: " + CommandBase.shooter.getSpeed());
-//		CommandBase.oi.getDS().print(3, "3: " + CommandBase.oi.getDS().getAnalogIn(1));
-		CommandBase.oi.getDS().print(4, "La: " + CommandBase.arm.getSensorLatch());
-		CommandBase.oi.getDS().print(5, "Ex: " + CommandBase.arm.getSensorExtracted());
-		CommandBase.oi.getDS().print(6, "Re: " + CommandBase.arm.getSensorRetracted());
-		CommandBase.oi.getDS().getDS().setDigitalOut(1, CommandBase.arm.getSensorExtracted());
-		CommandBase.oi.getDS().getDS().setDigitalOut(2, CommandBase.arm.getSensorRetracted());
-		CommandBase.oi.getDS().getDS().setDigitalOut(3, CommandBase.arm.getSensorLatch());
+		CommandBase.oi.getDS().getDS().setDigitalOut(kDSDigitalOutputSensorExtracted, CommandBase.arm.getSensorExtracted());
+		CommandBase.oi.getDS().getDS().setDigitalOut(kDSDigitalOutputSensorRetracted, CommandBase.arm.getSensorRetracted());
+		CommandBase.oi.getDS().getDS().setDigitalOut(kDSDigitalOutputSensorLatch, CommandBase.arm.getSensorLatch());
 	}
 	
 }

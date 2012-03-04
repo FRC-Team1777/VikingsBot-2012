@@ -8,6 +8,7 @@
 package vikingrobotics.subsystems;
 
 import vikingrobotics.commands.CommandBase;
+import vikingrobotics.commands.shooter.ShooterMove;
 import vikingrobotics.misc.Debug;
 import vikingrobotics.misc.RobotMap;
 import edu.wpi.first.wpilibj.Gyro;
@@ -50,7 +51,9 @@ public class Shooter extends Subsystem {
 //		resetCurrentGyroAngle();
 	}
 	
-	public void initDefaultCommand() {}
+	public void initDefaultCommand() {
+		setDefaultCommand(new ShooterMove());		
+	}
 	
 	// Set manual speed for the flyWheel
 	public void setSpeed(double speed) {
@@ -131,17 +134,6 @@ public class Shooter extends Subsystem {
 	
 	public double getGyroAngle() {
 		return currentAngle;
-	}
-	
-
-	/**
-	 * Checks if the current RPM is within the
-	 * tolerance range of the desired RPM.
-	 * @return atSetPoint
-	 */
-	public boolean isAtSetPoint() {
-		Debug.println("FlywheelSpeed: " +flyWheel.get()+ "\tSpeed: " +this.speed+ "\tDiff: " +(Math.abs(flyWheel.get() - this.speed)));
-		return (Math.abs(flyWheel.get() - this.speed) < 0.05);  // FIND TOLERANCE_RPM
 	}
 
 }
