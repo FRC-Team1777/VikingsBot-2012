@@ -7,6 +7,7 @@
 
 package vikingrobotics.subsystems;
 
+import vikingrobotics.misc.Constants;
 import vikingrobotics.misc.Debug;
 import vikingrobotics.misc.RobotMap;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -17,11 +18,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * Subsystem for the arm to bring the bridge down.
  * @author Neal
  */
-public class Arm extends Subsystem {
+public class Arm extends Subsystem implements Constants {
 
-	private double speed = 0.1;
-	private Jaguar arm;
-	private Jaguar latcher;
+	private double speed = 0.0;
+	private Jaguar arm, latcher;
 	private DigitalInput sensorExtracted;
 	private DigitalInput sensorRetracted;
 	private DigitalInput sensorLatch;
@@ -30,33 +30,28 @@ public class Arm extends Subsystem {
 		super("Arm");
 		arm = new Jaguar(RobotMap.kArmChannel);
 		latcher = new Jaguar(RobotMap.kArmLatchChannel);
-		Debug.println("[Arm] Initializing arm motor on channel " + RobotMap.kArmChannel);
-		Debug.println("[Arm] Initializing arm latch motor on relay " + RobotMap.kArmLatchChannel);
 		sensorExtracted = new DigitalInput(RobotMap.kArmSensorExtracted);
 		sensorRetracted = new DigitalInput(RobotMap.kArmSensorRetracted);
 		sensorLatch = new DigitalInput(RobotMap.kArmSensorLatch);
+		Debug.println("[Arm] Initializing arm motor on channel " + RobotMap.kArmChannel);
+		Debug.println("[Arm] Initializing arm latch motor on channel " + RobotMap.kArmLatchChannel);
+		Debug.println("[Arm] Initializing arm sensor extracted on DIO " + RobotMap.kArmSensorExtracted);
+		Debug.println("[Arm] Initializing arm sensor retracted on DIO " + RobotMap.kArmSensorRetracted);
+		Debug.println("[Arm] Initializing arm sensor latch on DIO " + RobotMap.kArmSensorLatch);
 	}
 	
 	public void initDefaultCommand() {}
 	
 	public void latch() {
-		latcher.set(-0.8);
+		latcher.set(kArmLatchSpeed * -1);
 	}
 	
 	public void unlatch() {
-		latcher.set(0.8);
+		latcher.set(kArmLatchSpeed * 1);
 	}
 	
 	public void stopLatch() {
 		latcher.set(0.0);
-	}
-	
-	public double getSpeed() {
-		return this.speed;
-	}
-	
-	public void runLatch(double speed) {
-		latcher.set(speed);
 	}
 	
 	public void setSpeed(double speed) {
