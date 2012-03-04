@@ -26,13 +26,7 @@ public class Shooter extends Subsystem {
 	private Jaguar flyWheel;
 	private Jaguar feeder;
 	private Relay angler;
-	private Gyro gyro;
-	private double currentAngle, previousAngle;
 	private double speed = 1.0;
-	private boolean angleSet = false;
-	private final static double speedTolerance = 2.0;
-	private final static double angleTolerance = 1.0;
-	private final static double defaultGyroAngle = 30;
 	
 	public Shooter() {
 		super("Shooter");
@@ -43,12 +37,6 @@ public class Shooter extends Subsystem {
 		Debug.println("[Shooter] Initializing Angler relay on channel " + RobotMap.kShooterAnglerChannel);
 		angler = new Relay(RobotMap.kShooterAnglerChannel);
 		Debug.println("[Shooter] Initializing gyro on channel " + RobotMap.kGyroChannel);
-		gyro = new Gyro(RobotMap.kGyroChannel);
-		gyro.setSensitivity(0.007);
-		gyro.reset();
-		currentAngle = defaultGyroAngle + SmartDashboard.getDouble("TestDouble", 0.0);
-		previousAngle = currentAngle;
-//		resetCurrentGyroAngle();
 	}
 	
 	public void initDefaultCommand() {
@@ -110,30 +98,6 @@ public class Shooter extends Subsystem {
 	public void moveStop() {
 		SmartDashboard.putString("ShooterMove", "Stop");
 		angler.set(Relay.Value.kOff);
-	}
-	
-	// Set the current shooter angle
-	public void setAngle(double angle) {
-		if (this.currentAngle != angle) {
-			this.previousAngle = currentAngle;
-			this.currentAngle = angle;
-		}
-	}
-	
-	public void resetGyro() {
-		gyro.reset();
-	}
-	
-	public void resetCurrentGyroAngle() {
-		this.currentAngle = defaultGyroAngle + ((CommandBase.oi.getDS().getDS().getAnalogIn(2) * 10) - 25);
-	}
-	
-	public void changingAngle() {
-		this.currentAngle -= gyro.getAngle();
-	}
-	
-	public double getGyroAngle() {
-		return currentAngle;
 	}
 
 }

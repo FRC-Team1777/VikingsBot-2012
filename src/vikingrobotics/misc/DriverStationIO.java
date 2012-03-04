@@ -17,16 +17,9 @@ import edu.wpi.first.wpilibj.DriverStationEnhancedIO;
 public class DriverStationIO implements Constants {
 	
 	DriverStationEnhancedIO enhancedIO;
-	private boolean digital1;
 	
 	public DriverStationIO() {
 		enhancedIO = DriverStation.getInstance().getEnhancedIO();
-		try {
-			digital1 = getDigital(1);
-		}
-		catch (Exception e) {
-			Debug.println("[ERROR] DS IO error 1 - " + e);
-		}
 	}
 	
 	private boolean getDigital(int channel) {
@@ -34,7 +27,7 @@ public class DriverStationIO implements Constants {
 			return enhancedIO.getDigital(channel);
 		}
 		catch (Exception e) {
-			Debug.println("[ERROR] DS IO error 2 - " + e);
+			Debug.println("[ERROR] DS IO error 1 - " + e);
 			return false;
 		}
 	}

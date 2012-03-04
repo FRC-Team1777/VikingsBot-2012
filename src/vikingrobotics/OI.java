@@ -15,7 +15,6 @@ import vikingrobotics.commands.arm.ArmUnlatch;
 import vikingrobotics.commands.grabber.GrabberReverse;
 import vikingrobotics.commands.grabber.GrabberRun;
 import vikingrobotics.commands.grabber.GrabberStop;
-import vikingrobotics.commands.shooter.ResetGyro;
 import vikingrobotics.commands.shooter.ShooterFeed;
 import vikingrobotics.commands.shooter.ShooterMove;
 import vikingrobotics.commands.shooter.ShooterRun;
@@ -72,9 +71,6 @@ public class OI implements Constants {
 		gamepad = new Gamepad(RobotMap.kJoystick1);
 		joystick = new Gamepad(RobotMap.kJoystick2);
 		joystick2 = new Gamepad(RobotMap.kJoystick3);
-		
-		SmartDashboard.putData("ResetGyro", buttonResetGyro);
-		buttonResetGyro.whenPressed(new ResetGyro());
 		
 		// Arm buttons
 		new JoystickButton(gamepad, kGamepadButtonLB).whenPressed(new ArmRun());

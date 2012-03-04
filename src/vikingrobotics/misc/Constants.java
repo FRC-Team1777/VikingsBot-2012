@@ -21,6 +21,11 @@ public interface Constants {
 	public static final double kArmSlowSpeed = 0.4;
 	public static final double kArmLatchSpeed = 0.8;
 
+	public static final double kTimeFeedOneBall = 0.4;
+	public static final double kShooterUp = 1.0;
+	public static final double kShooterDown = -1.0;
+	public static final boolean kShooterForceFeed = true;
+
 	public static final double kRobotWidth = 38;
 	public static final double kRobotLength = 28;
 	public static final double kRobotBumpers = 3 + 3;
@@ -36,11 +41,6 @@ public interface Constants {
 	public static final double kHoopHeightLow = 28;
 	public static final double kHoopInnerRadius = 9;
 	public static final double kHoopInnerDiameter = kHoopInnerRadius*2;
-
-	public static final double kTimeFeedOneBall = 0.4;
-	public static final double kShooterUp = 1.0;
-	public static final double kShooterDown = -1.0;
-	public static final boolean kShooterForceFeed = true;
 
 	public static final double kJoystickThreshold = 0.2;
 	
@@ -123,8 +123,8 @@ public interface Constants {
 	public static final int kDSDigitalInputShooterAI1 = 2;
 	public static final int kDSDigitalInputArcadeDrive = 3;
 	public static final int kDSDigitalInputDisableDrive = 4;
-	public static final int kDSDigitalInputForceLatch = 5;
-	public static final int kDSDigitalInputSlowDrive = 6;
+	public static final int kDSDigitalInputSlowDrive = 5;
+	public static final int kDSDigitalInput6 = 6;
 	public static final int kDSDigitalInput7 = 7;
 	public static final int kDSDigitalInputDebugMode = 8;
 	
@@ -132,5 +132,11 @@ public interface Constants {
 	public static final int kDSDigitalOutputSensorExtracted = 1;
 	public static final int kDSDigitalOutputSensorRetracted = 2;
 	public static final int kDSDigitalOutputSensorLatch = 3;
+	
+	// Driver Station Analog Inputs
+	public static final int kDSAnalogInput1 = 1;
+	public static final int kDSAnalogInput2 = 2;
+	public static final int kDSAnalogInput3 = 3;
+	public static final int kDSAnalogInput4 = 4;
 
 }

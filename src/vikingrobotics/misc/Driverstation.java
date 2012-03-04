@@ -7,15 +7,9 @@
 
 package vikingrobotics.misc;
 
-import edu.wpi.first.wpilibj.Dashboard;
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.DriverStationEnhancedIO;
 import edu.wpi.first.wpilibj.DriverStationLCD;
-import edu.wpi.first.wpilibj.IDashboard;
-import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.DriverStationLCD.Line;
-import edu.wpi.first.wpilibj.communication.FRCCommonControlData;
 
 /**
  * 
@@ -39,8 +33,8 @@ public class Driverstation implements Constants {
 	};
 	
 	public Driverstation() {
-		DS = DriverStation.getInstance();
 		IO = new DriverStationIO();
+		DS = DriverStation.getInstance();
 		LCD = DriverStationLCD.getInstance();
 		clearConsole();
 		print(1, "Initializing...");

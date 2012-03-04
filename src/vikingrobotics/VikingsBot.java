@@ -49,7 +49,8 @@ public class VikingsBot extends IterativeRobot implements Constants {
 	public void autonomousInit() {
 		Debug.println("[mode] Autonomous");
 		commonInit();
-		// Don't want autonomous unless at competition.
+		
+		// Don't want autonomous unless at competition, to prevent accidental usage.
 		//autonomousCommand.start();
 	}
 
@@ -133,7 +134,6 @@ public class VikingsBot extends IterativeRobot implements Constants {
 	public void updateDashboard() {
 		SmartDashboard.putDouble("Battery Percent", Utils.scaleBatteryVoltage(CommandBase.oi.getDS().getDS().getBatteryVoltage()));
 		SmartDashboard.putDouble("Sonar", CommandBase.drivetrain.getSonarDistance());
-		SmartDashboard.putDouble("Gyro", CommandBase.shooter.getGyroAngle());
 		SmartDashboard.putDouble("Shooter Speed", CommandBase.shooter.getSpeed());
 		SmartDashboard.putDouble("ShooterSpeed", CommandBase.shooter.getSpeed());
 		SmartDashboard.putBoolean("SystemActive", isSystemActive());
