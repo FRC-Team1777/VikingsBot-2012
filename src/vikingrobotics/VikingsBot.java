@@ -47,6 +47,7 @@ public class VikingsBot extends IterativeRobot implements Constants {
 	 * the robot enters autonomous mode.
 	 */
 	public void autonomousInit() {
+		CommandBase.oi.getDS().print(1, "Autonomous");
 		Debug.println("[mode] Autonomous");
 		commonInit();
 		
@@ -74,6 +75,7 @@ public class VikingsBot extends IterativeRobot implements Constants {
 	 * the robot enters teleop mode.
 	 */
 	public void teleopInit() {
+		CommandBase.oi.getDS().print(1, "Operator control");
 		Debug.println("[mode] Operator control");
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
@@ -101,6 +103,7 @@ public class VikingsBot extends IterativeRobot implements Constants {
 	 * the robot enters disabled mode.
 	 */
 	public void disabledInit() {
+		CommandBase.oi.getDS().print(1, "Disabled");
 		Debug.println("[mode] Disabled");
 		commonInit();
 	}

@@ -7,6 +7,7 @@
 
 package vikingrobotics.commands.arm;
 
+import vikingrobotics.commands.WriteUM;
 import vikingrobotics.misc.Constants;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
@@ -28,28 +29,35 @@ public class ArmRun extends CommandGroup implements Constants {
 		/*
 		 * Extract the arm all the way until it hits the sensor
 		 */
+		addParallel(new WriteUM(2, "Arm: Extracting"));
 		addSequential(new ArmExtract(kArmSpeed, ARM_EXTRACT_TIMEOUT));
 		addSequential(new WaitCommand(0.5));
 		/*
 		 * Latch the arm until it hits the sensor, with a timeout of 0.5 seconds
 		 */
+		addParallel(new WriteUM(2, "Arm: Latching"));
 		addSequential(new ArmLatch(ARM_LATCH_TIMEOUT));
 		/*
 		 * Wait for 7 seconds; give time to get on the bridge
 		 */
+		addParallel(new WriteUM(2, "Arm: Waiting"));
 		addSequential(new WaitCommand(DELAY_TIME));
 		/*
 		 * Unlatch the arm for 0.4 seconds
 		 */
+		addParallel(new WriteUM(2, "Arm: Unlatching"));
 		addSequential(new ArmUnlatch(ARM_UNLATCH_TIMEOUT));
 		/*
 		 * Retract back the arm all the way until it hits the sensor
 		 */
+		addParallel(new WriteUM(2, "Arm: Retracting"));
 		addSequential(new ArmRetract(kArmSpeed, ARM_RETRACT_TIMEOUT));
 		/*
 		 * Extract the arm for 0.17 seconds at slow speed
 		 */
+		addParallel(new WriteUM(2, "Arm: Extracting slow"));
 		addSequential(new ArmExtract(kArmSlowSpeed, ARM_EXTRACT2_TIMEOUT));
+		addParallel(new WriteUM(2, "Arm: idle"));
 	}
 	
 }
