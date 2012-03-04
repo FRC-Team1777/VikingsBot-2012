@@ -62,7 +62,6 @@ public class OI implements Constants {
 	
 	public OI() {
 		m_ds = new Driverstation();
-		if(getDS().getDS().getDigitalIn(kDSDigitalInputDebugMode)) Debug.setMode(false);
 		if(getDS().getDS().getTeamNumber() != kTeamNumber) Debug.println("[ERROR] Team number not "+ kTeamNumber +" on the Driver Station!");
 		
 		gamepad = new Gamepad(RobotMap.kJoystick1);

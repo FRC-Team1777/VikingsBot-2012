@@ -126,7 +126,7 @@ public interface Constants {
 	public static final int kDSDigitalInputSlowDrive = 5;
 	public static final int kDSDigitalInput6 = 6;
 	public static final int kDSDigitalInput7 = 7;
-	public static final int kDSDigitalInputDebugMode = 8;
+	public static final int kDSDigitalInput8 = 8;
 	
 	// Driver Station Digital Outputs
 	public static final int kDSDigitalOutputSensorExtracted = 1;
