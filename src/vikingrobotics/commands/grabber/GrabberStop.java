@@ -12,8 +12,6 @@ import vikingrobotics.commands.CommandBase;
 
 public class GrabberStop extends CommandBase {
 	
-	private boolean hasFinished = false;
-	
 	public GrabberStop() {
 		super("GrabberStop");
 		requires(grabber);
@@ -21,26 +19,22 @@ public class GrabberStop extends CommandBase {
 
 	protected void initialize() {
 		Debug.print("[" + this.getName() + "]");
-		hasFinished = false;
+		grabber.stop();
 	}
 
 	protected void execute() {
-		grabber.stop();
-		hasFinished = true;
 	}
 
 	protected boolean isFinished() {
-		return hasFinished;
+		return true;
 	}
 
 	protected void end() {
 		Debug.println("\t\tDONE");
-		grabber.stop();
 	}
 
 	protected void interrupted() {
 		Debug.println("[interrupted] " + getName());
-		grabber.stop();
 	}
 
 }
