@@ -19,14 +19,14 @@ public class ShooterStop extends CommandBase {
 	
 	protected void initialize() {
 		Debug.println("[" + this.getName() + "]");
-	}
-
-	protected void execute() {
 		shooter.stop();
 	}
 
+	protected void execute() {
+	}
+
 	protected boolean isFinished() {
-		return true; // This will call end() and will stop it anyways. Will also kill the thread that way.
+		return true;
 	}
 
 	protected void end() {
