@@ -11,7 +11,7 @@ import vikingrobotics.misc.Constants;
 import vikingrobotics.misc.Debug;
 import vikingrobotics.commands.CommandBase;
 
-public class ShooterMove extends CommandBase {
+public class ShooterMove extends CommandBase implements Constants {
 	
 	private boolean hasTimeout = false;
 	private boolean hasSpeed = false;
@@ -50,7 +50,7 @@ public class ShooterMove extends CommandBase {
 
 	protected void execute() {
 		if(!hasSpeed) {
-			speed = oi.getGamePad().getAxis(Constants.kGamepadAxisDpadX);
+			speed = oi.getGamePad().getAxis(kGamepadAxisDpadX);
 		}
 		if(speed > 0) {
 			shooter.moveUp();
