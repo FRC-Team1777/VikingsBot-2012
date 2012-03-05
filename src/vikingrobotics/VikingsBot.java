@@ -50,9 +50,7 @@ public class VikingsBot extends IterativeRobot implements Constants {
 		CommandBase.oi.getDS().print(1, "Autonomous");
 		Debug.println("[mode] Autonomous");
 		commonInit();
-		
-		// Don't want autonomous unless at competition, to prevent accidental usage.
-		//autonomousCommand.start();
+		autonomousCommand.start();
 	}
 
 	/**
