@@ -24,8 +24,8 @@ public class Driverstation implements Constants {
 	private static final String kDefaultMessage = "                         ";
 	
 	public static final Line[] line = {
-		DriverStationLCD.Line.kMain6,
-		DriverStationLCD.Line.kUser2,
+		DriverStationLCD.Line.kMain6,		// Mode
+		DriverStationLCD.Line.kUser2,		// Arm status
 		DriverStationLCD.Line.kUser3,
 		DriverStationLCD.Line.kUser4,
 		DriverStationLCD.Line.kUser5,
@@ -75,7 +75,6 @@ public class Driverstation implements Constants {
 	
 	/**
 	 * Clear all lines.
-	 * 
 	 */
 	public void clearConsole() {
 		for (int i = 1; i <= 6; i++) {
