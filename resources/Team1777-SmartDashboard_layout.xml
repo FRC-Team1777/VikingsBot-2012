@@ -1,0 +1,173 @@
+<?xml version="1.0"?>
+<dashboard>
+	<widget field="Gyro" type="Double" class="edu.wpi.first.smartdashboard.gui.elements.FormattedField">
+		<location x="408" y="312"/>
+		<width>168</width>
+		<property name="Background" value="255.204.0.255"/>
+	</widget>
+	<widget field="Shooter Speed" type="Double" class="edu.wpi.first.smartdashboard.gui.elements.FormattedField">
+		<location x="352" y="232"/>
+		<width>224</width>
+		<height>59</height>
+		<property name="Background" value="255.204.0.255"/>
+		<property name="Font Size" value="36"/>
+	</widget>
+	<widget field="ShooterMove" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="6" y="160"/>
+		<width>218</width>
+		<property name="Background" value="255.204.0.255"/>
+	</widget>
+	<widget field="SystemActive" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
+		<location x="30" y="308"/>
+		<width>114</width>
+		<height>28</height>
+	</widget>
+	<widget field="SensorLatch" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
+		<location x="352" y="64"/>
+		<width>98</width>
+	</widget>
+	<widget field="SensorRetracted" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
+		<location x="352" y="32"/>
+		<width>121</width>
+	</widget>
+	<widget field="ShooterSpeed" type="Double" class="edu.wpi.first.smartdashboard.gui.elements.ProgressBar">
+		<location x="352" y="274"/>
+		<width>224</width>
+		<property name="Maximum" value="1"/>
+	</widget>
+	<widget field="SensorExtracted" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
+		<location x="352" y="48"/>
+		<width>118</width>
+	</widget>
+	<widget field="Battery Percent" type="Double" class="vikingrobotics.smartdashboard.extensions.VerticalBar">
+		<location x="176" y="208"/>
+		<width>48</width>
+		<height>160</height>
+	</widget>
+	<widget field="Sonar" type="Double" class="edu.wpi.first.smartdashboard.gui.elements.FormattedField">
+		<location x="400" y="340"/>
+		<width>176</width>
+		<property name="Background" value="255.204.0.255"/>
+	</widget>
+	<widget field="ResetGyro" type="Button" class="edu.wpi.first.smartdashboard.gui.elements.Button">
+		<location x="240" y="320"/>
+		<width>96</width>
+	</widget>
+	<widget field="ShooterRun02" type="Button" class="edu.wpi.first.smartdashboard.gui.elements.Button">
+		<location x="468" y="132"/>
+	</widget>
+	<widget field="ArmRun" type="Button" class="edu.wpi.first.smartdashboard.gui.elements.Button">
+		<location x="240" y="32"/>
+	</widget>
+	<widget field="ShooterRun04" type="Button" class="edu.wpi.first.smartdashboard.gui.elements.Button">
+		<location x="352" y="164"/>
+		<height>28</height>
+	</widget>
+	<widget field="ShooterRun06" type="Button" class="edu.wpi.first.smartdashboard.gui.elements.Button">
+		<location x="468" y="164"/>
+	</widget>
+	<widget field="ShooterRun" type="Button" class="edu.wpi.first.smartdashboard.gui.elements.Button">
+		<location x="353" y="132"/>
+		<width>106</width>
+	</widget>
+	<widget field="ShooterRun08" type="Button" class="edu.wpi.first.smartdashboard.gui.elements.Button">
+		<location x="352" y="196"/>
+	</widget>
+	<widget field="GrabberStop" type="Button" class="edu.wpi.first.smartdashboard.gui.elements.Button">
+		<location x="240" y="96"/>
+	</widget>
+	<widget field="FeedBall" type="Button" class="edu.wpi.first.smartdashboard.gui.elements.Button">
+		<location x="240" y="240"/>
+		<width>96</width>
+		<height>64</height>
+	</widget>
+	<widget field="Scheduler" type="Scheduler" class="edu.wpi.first.smartdashboard.gui.elements.Scheduler">
+		<location x="576" y="16"/>
+		<width>208</width>
+	</widget>
+	<widget field="ShooterDn" type="Button" class="edu.wpi.first.smartdashboard.gui.elements.Button">
+		<location x="240" y="176"/>
+		<width>96</width>
+		<height>48</height>
+	</widget>
+	<widget field="ShooterStop" type="Button" class="edu.wpi.first.smartdashboard.gui.elements.Button">
+		<location x="352" y="89"/>
+		<width>224</width>
+		<height>39</height>
+	</widget>
+	<widget field="ShooterRun10" type="Button" class="edu.wpi.first.smartdashboard.gui.elements.Button">
+		<location x="468" y="196"/>
+	</widget>
+	<widget field="GrabberRun" type="Button" class="edu.wpi.first.smartdashboard.gui.elements.Button">
+		<location x="240" y="68"/>
+	</widget>
+	<widget field="ShooterUp" type="Button" class="edu.wpi.first.smartdashboard.gui.elements.Button">
+		<location x="240" y="132"/>
+		<width>96</width>
+		<height>44</height>
+	</widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="32" y="7"/>
+		<width>192</width>
+		<height>25</height>
+		<property name="Text" value="Subsystems"/>
+	</static-widget>
+	<widget field="Shooter" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+		<location x="27" y="128"/>
+		<width>197</width>
+		<property name="Background" value="255.204.0.255"/>
+	</widget>
+	<widget field="Grabber" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+		<location x="25" y="96"/>
+		<width>199</width>
+		<property name="Background" value="255.204.0.255"/>
+	</widget>
+	<widget field="Arm" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+		<location x="48" y="32"/>
+		<width>176</width>
+		<property name="Background" value="255.204.0.255"/>
+	</widget>
+	<widget field="DriveTrain" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+		<location x="14" y="64"/>
+		<width>210</width>
+		<property name="Background" value="255.204.0.255"/>
+	</widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="16" y="240"/>
+		<width>128</width>
+		<property name="Text" value="Status"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.ConnectionIndicator">
+		<location x="16" y="264"/>
+		<width>128</width>
+		<height>40</height>
+	</static-widget>
+	<hidden field="FrontRight"/>
+	<hidden field="JS1Axis2"/>
+	<hidden field="JS1Axis1"/>
+	<hidden field="JS1Axis4"/>
+	<hidden field="JS1Axis3"/>
+	<hidden field="JS1Axis6"/>
+	<hidden field="JS1Axis5"/>
+	<hidden field="ArmCancel"/>
+	<hidden field="FrontLeft"/>
+	<hidden field="Y"/>
+	<hidden field="X"/>
+	<hidden field="Z"/>
+	<hidden field="ExampleSubsystem"/>
+	<hidden field="JS2Axis1"/>
+	<hidden field="JS2Axis6"/>
+	<hidden field="Battery Voltage"/>
+	<hidden field="RearRight"/>
+	<hidden field="JS2Axis3"/>
+	<hidden field="Mode"/>
+	<hidden field="JS2Axis2"/>
+	<hidden field="JS2Axis5"/>
+	<hidden field="JS2Axis4"/>
+	<hidden field="Sonar distance"/>
+	<hidden field="RearLeft"/>
+	<hidden field="TestDouble"/>
+	<hidden field="BalanceOnBridge"/>
+	<hidden field="Camera Angle"/>
+	<hidden field="MODE "/>
+</dashboard>
