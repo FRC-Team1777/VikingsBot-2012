@@ -8,7 +8,7 @@
 package vikingrobotics;
 
 import vikingrobotics.commands.CommandBase;
-import vikingrobotics.commands.autonomous.Auton1;
+import vikingrobotics.commands.autonomous.Autonomous;
 import vikingrobotics.misc.Constants;
 import vikingrobotics.misc.Debug;
 import vikingrobotics.misc.Utils;
@@ -34,7 +34,7 @@ public class VikingsBot extends IterativeRobot implements Constants {
 	 */
 	public void robotInit() {
 		Debug.println("[robotInit] Initializing...");
-		autonomousCommand = new Auton1();
+		autonomousCommand = new Autonomous();
 		timer.start();
 		CommandBase.init();
 		timer.stop();
@@ -75,10 +75,10 @@ public class VikingsBot extends IterativeRobot implements Constants {
 	 * the robot enters teleop mode.
 	 */
 	public void teleopInit() {
-		CommandBase.oi.getDS().print(1, "Operator control");
-		Debug.println("[mode] Operator control");
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
+		CommandBase.oi.getDS().print(1, "Operator control");
+		Debug.println("[mode] Operator control");
 		commonInit();
 	}
 
