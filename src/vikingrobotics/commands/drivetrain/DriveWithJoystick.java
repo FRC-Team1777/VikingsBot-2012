@@ -13,6 +13,8 @@ import vikingrobotics.commands.CommandBase;
 
 public class DriveWithJoystick extends CommandBase implements Constants {
 
+	private double leftVal, rightVal;
+	
 	public DriveWithJoystick() {
 		super("DriveWithJoystick");
 		requires(drivetrain);
@@ -27,12 +29,17 @@ public class DriveWithJoystick extends CommandBase implements Constants {
 			drivetrain.arcadeDrive(oi.getJoystick().getAxis(kJoystickAxisY), oi.getJoystick().getAxis(kJoystickAxisX));
 		}
 		else {
-			if (oi.getDS().getDS().getDigitalIn(kDSDigitalInputSlowDrive)) {
-				drivetrain.tankDrive(oi.getGamePad().getAxis(kGamepadAxisLeftStickY) * 0.8, oi.getGamePad().getAxis(kGamepadAxisRightStickY) * 0.8);
-			}
-			else {
-				drivetrain.tankDrive(oi.getGamePad().getAxis(kGamepadAxisLeftStickY), oi.getGamePad().getAxis(kGamepadAxisRightStickY));
-			}
+			setTankDriveLeftRightValues();
+			drivetrain.tankDrive(leftVal, rightVal);
+		}
+	}
+	
+	private void setTankDriveLeftRightValues() {
+		this.leftVal = oi.getGamePad().getAxis(kGamepadAxisLeftStickY);
+		this.rightVal = oi.getGamePad().getAxis(kGamepadAxisRightStickY);
+		if (oi.getDS().getDS().getDigitalIn(kDSDigitalInputSlowDrive)) {
+			this.leftVal *= kSlowDrive;
+			this.rightVal *= kSlowDrive;
 		}
 	}
 
