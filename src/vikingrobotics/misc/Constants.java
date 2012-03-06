@@ -16,6 +16,9 @@ public interface Constants {
 	public static final int kTeamNumber = 1777;
 	
 	public static final double kMaxBatteryVoltage = 13.0;
+	public static final double kFullSpeed = 1.0;
+	public static final double kStop = 0.0;
+	public static final double kSlowDrive = 0.8;
 	
 	public static final double kArmSpeed = 1.0;
 	public static final double kArmSlowSpeed = 0.4;
@@ -124,7 +127,7 @@ public interface Constants {
 	public static final int kDSDigitalInputArcadeDrive = 3;
 	public static final int kDSDigitalInputDisableDrive = 4;
 	public static final int kDSDigitalInputSlowDrive = 5;
-	public static final int kDSDigitalInput6 = 6;
+	public static final int kDSDigitalInputPreciseThrottle = 6;
 	public static final int kDSDigitalInput7 = 7;
 	public static final int kDSDigitalInputAutonomous = 8;
 	

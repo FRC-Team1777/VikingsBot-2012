@@ -26,7 +26,7 @@ public class Driverstation implements Constants {
 	public static final Line[] line = {
 		DriverStationLCD.Line.kMain6,		// Mode
 		DriverStationLCD.Line.kUser2,		// Arm status
-		DriverStationLCD.Line.kUser3,
+		DriverStationLCD.Line.kUser3,		// ShooterMove status
 		DriverStationLCD.Line.kUser4,
 		DriverStationLCD.Line.kUser5,
 		DriverStationLCD.Line.kUser6

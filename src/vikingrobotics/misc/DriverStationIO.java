@@ -7,7 +7,7 @@
 
 package vikingrobotics.misc;
 
-import edu.wpi.first.wpilibj.DriverStation;
+import vikingrobotics.commands.CommandBase;
 import edu.wpi.first.wpilibj.DriverStationEnhancedIO;
 
 /**
@@ -19,7 +19,7 @@ public class DriverStationIO implements Constants {
 	DriverStationEnhancedIO enhancedIO;
 	
 	public DriverStationIO() {
-		enhancedIO = DriverStation.getInstance().getEnhancedIO();
+		enhancedIO = CommandBase.oi.getDS().getDS().getEnhancedIO();
 	}
 	
 	private boolean getDigital(int channel) {
