@@ -7,13 +7,18 @@
 
 package vikingrobotics.commands.shooter;
 
+import vikingrobotics.misc.Constants;
 import vikingrobotics.misc.Debug;
 import vikingrobotics.commands.CommandBase;
 
-public class ShooterFeed extends CommandBase {
+public class ShooterFeed extends CommandBase implements Constants {
 	
 	private boolean forceFeed = false;
 	private double timeout;
+	
+	public ShooterFeed() {
+		this.timeout = kTimeFeedOneBall;
+	}
 	
 	public ShooterFeed(double timeout) {
 		this.timeout = timeout;

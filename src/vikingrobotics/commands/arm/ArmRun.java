@@ -14,17 +14,21 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 
 public class ArmRun extends CommandGroup implements Constants {
 	
-	// Timeouts are there incase sensors don't work.
+	// Timeouts are for safety; incase sensors don't work.
 	// We don't want to break the motors :P
 	
 	private double ARM_EXTRACT_TIMEOUT = 3.5;
 	private double ARM_LATCH_TIMEOUT = 0.5;
-	private double DELAY_TIME = 7.0;
+	private static double DELAY_TIME = 7.0;
 	private double ARM_UNLATCH_TIMEOUT = 0.4;
 	private double ARM_RETRACT_TIMEOUT = 2.0;
 	private double ARM_EXTRACT2_TIMEOUT = 0.17;
 	
 	public ArmRun() {
+		this(DELAY_TIME);
+	}
+	
+	public ArmRun(double delayTime) {
 		super("ArmRun");
 		/*
 		 * Extract the arm all the way until it hits the sensor
@@ -38,10 +42,11 @@ public class ArmRun extends CommandGroup implements Constants {
 		addParallel(new WriteUM(2, "Arm: Latching"));
 		addSequential(new ArmLatch(ARM_LATCH_TIMEOUT));
 		/*
-		 * Wait for 7 seconds; give time to get on the bridge
+		 * Wait for 7 seconds, unless called the ArmRun(double delayTime)
+		 * constructor directly to force a different delay time
 		 */
 		addParallel(new WriteUM(2, "Arm: Waiting"));
-		addSequential(new WaitCommand(DELAY_TIME));
+		addSequential(new WaitCommand(delayTime));
 		/*
 		 * Unlatch the arm for 0.4 seconds
 		 */
@@ -60,4 +65,10 @@ public class ArmRun extends CommandGroup implements Constants {
 		addParallel(new WriteUM(2, "Arm: idle"));
 	}
 	
+		// Need to check if this works.
+		//
+		//for (int i = DELAY_TIME; i > 0; i--) {
+		//	addParallel(new WriteUM(2, "Arm: Waiting: " + i));
+		//	addSequential(new WaitCommand(i));
+		//}
 }

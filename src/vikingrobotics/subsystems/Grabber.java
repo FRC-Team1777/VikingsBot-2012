@@ -25,25 +25,31 @@ public class Grabber extends Subsystem implements Constants {
 		super("Grabber");
 		Debug.println("[Grabber] Initializing ball grabber jaguar on channel " + RobotMap.kGrabberChannel);
 		grabberJag = new Jaguar(RobotMap.kGrabberChannel);
+		grabberJag.setSafetyEnabled(true);
 	}
 	
 	protected void initDefaultCommand() {
 	}
 	
-	public double getSpeed() {
-		return grabberJag.get();
-	}
-	
+	/**
+	 * Run the ball grabber in the direction to pick up balls.
+	 */
 	public void start() {
-		grabberJag.set(1.0);
+		grabberJag.set(kFullSpeed * 1);
 	}
 	
+	/**
+	 * Run the ball grabber in reverse direction.
+	 */
 	public void reverse() {
-		grabberJag.set(-1.0);
+		grabberJag.set(kFullSpeed * -1);
 	}
 	
+	/**
+	 * Stop the ball grabber.
+	 */
 	public void stop() {
-		grabberJag.set(0.0);
+		grabberJag.set(kStop);
 	}
 
 }

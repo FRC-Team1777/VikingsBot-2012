@@ -10,18 +10,18 @@ package vikingrobotics.misc;
 import edu.wpi.first.wpilibj.Joystick;
 
 /**
- * Modified version for the Joystick class, making it easier for the gamepad,
- * and scaling the values.
+ * Modified version for the Joystick class, making it easier for the 
+ * Logitech Gamepad, and scaling the values.
  * @author Neal
  */
-public class Gamepad extends Joystick implements Constants {
+public class Controller extends Joystick implements Constants {
 	
 	/**
-	 * Gamepad contructor
+	 * Controller contructor
 	 * 
 	 * @param port
 	 */
-	public Gamepad(int port) {
+	public Controller(int port) {
 		super(port);
 	}
 
@@ -30,7 +30,7 @@ public class Gamepad extends Joystick implements Constants {
 	 * @param numAxisTypes
 	 * @param numButtonTypes
 	 */
-	public Gamepad(int port, int numAxisTypes, int numButtonTypes) {
+	public Controller(int port, int numAxisTypes, int numButtonTypes) {
 		super(port, numAxisTypes, numButtonTypes);
 	}
 

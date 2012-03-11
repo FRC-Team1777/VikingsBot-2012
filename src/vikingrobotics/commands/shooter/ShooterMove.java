@@ -54,14 +54,15 @@ public class ShooterMove extends CommandBase implements Constants {
 		}
 		if(speed > 0) {
 			shooter.moveUp();
-			Debug.println("[ShooterMove] moving up");
-		}
+			oi.getDS().print(3, "Shooter: Moving up");
+			}
 		else if(speed < 0) {
 			shooter.moveDown();
-			Debug.println("[ShooterMove] moving down");
+			oi.getDS().print(3, "Shooter: Moving down");
 		}
 		else {
 			shooter.moveStop();
+			oi.getDS().print(3, "Shooter: idle");
 		}
 	}
 	
@@ -70,11 +71,13 @@ public class ShooterMove extends CommandBase implements Constants {
 	}
 
 	protected void end() {
+		oi.getDS().print(3, "Shooter: ended");
 		shooter.moveStop();
 	}
 
 	protected void interrupted() {
 		Debug.println("[interrupted] " + getName());
+		oi.getDS().print(3, "Shooter: interrupted");
 		shooter.moveStop();
 	}
 

@@ -37,7 +37,7 @@ public class DriveTrain extends Subsystem implements Constants {
 		drive = new RobotDrive(leftJag, rightJag);
 		drive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
 		drive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
-		drive.setSafetyEnabled(false);
+		drive.setSafetyEnabled(true);
 		
 		sonar = new AnalogChannel(RobotMap.kSonarChannel);
 		Debug.println("[DriveTrain] Initializing sonar on channel " + RobotMap.kSonarChannel);
@@ -56,10 +56,19 @@ public class DriveTrain extends Subsystem implements Constants {
 		return sonar;
 	}
 	
+	/**
+	 * Stop driving
+	 */
 	public void stop() {
-		drive.tankDrive(0.0, 0.0);
+		drive.stopMotor();
 	}
 	
+	/**
+	 * Tell if the robot is allowed to drive or not. It is decided by the Digital Input for DisableDrive.
+	 * If Digital Input for DisableDrive is on, we return false and all the drive motors will not run
+	 * at all, not matter what command asks it to.
+	 * @return Whether or not the drive motors are allowed to run
+	 */
 	public boolean canDrive() {
 		return !(CommandBase.oi.getDS().getDS().getDigitalIn(kDSDigitalInputDisableDrive));
 	}

@@ -38,6 +38,8 @@ public class Arm extends Subsystem implements Constants {
 		sensorRetracted = new DigitalInput(RobotMap.kArmSensorRetracted);
 		Debug.println("[Arm] Initializing arm sensor latch on DIO " + RobotMap.kArmSensorLatch);
 		sensorLatch = new DigitalInput(RobotMap.kArmSensorLatch);
+		arm.setSafetyEnabled(true);
+		latcher.setSafetyEnabled(true);
 	}
 	
 	public void initDefaultCommand() {}
@@ -51,7 +53,7 @@ public class Arm extends Subsystem implements Constants {
 	}
 	
 	public void stopLatch() {
-		latcher.set(0.0);
+		latcher.set(kStop);
 	}
 	
 	public void setSpeed(double speed) {
@@ -67,7 +69,7 @@ public class Arm extends Subsystem implements Constants {
 	}
 	
 	public void stop() {
-		arm.set(0.0);
+		arm.set(kStop);
 	}
 	
 	public boolean getSensorRetracted() {

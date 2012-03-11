@@ -8,6 +8,7 @@
 package vikingrobotics.subsystems;
 
 import vikingrobotics.commands.shooter.ShooterMove;
+import vikingrobotics.misc.Constants;
 import vikingrobotics.misc.Debug;
 import vikingrobotics.misc.RobotMap;
 import edu.wpi.first.wpilibj.Jaguar;
@@ -19,12 +20,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * Subsystem for the shooter. Includes the fly wheel motor, the feeder and the angle setter.
  * @author Neal
  */
-public class Shooter extends Subsystem {
+public class Shooter extends Subsystem implements Constants {
 	
 	private Jaguar flyWheel;
 	private Jaguar feeder;
 	private Relay angler;
-	private double speed = 0.0;
+	private double flyWheelSpeed = 0.0;
 	
 	public Shooter() {
 		super("Shooter");
@@ -35,6 +36,8 @@ public class Shooter extends Subsystem {
 		Debug.println("[Shooter] Initializing Angler relay on channel " + RobotMap.kShooterAnglerChannel);
 		angler = new Relay(RobotMap.kShooterAnglerChannel);
 		Debug.println("[Shooter] Initializing gyro on channel " + RobotMap.kGyroChannel);
+		flyWheel.setSafetyEnabled(true);
+		feeder.setSafetyEnabled(true);
 	}
 	
 	public void initDefaultCommand() {
@@ -42,15 +45,15 @@ public class Shooter extends Subsystem {
 	}
 	
 	public void setSpeed(double speed) {
-		this.speed = speed;
+		this.flyWheelSpeed = speed;
 	}
 	
 	public double getSpeed() {
-		return this.speed;
+		return this.flyWheelSpeed;
 	}
 	
 	public void run() {
-		flyWheel.set(this.speed);
+		flyWheel.set(this.flyWheelSpeed);
 	}
 	
 	public void run(double speed) {
@@ -59,18 +62,18 @@ public class Shooter extends Subsystem {
 	}
 	
 	public void stop() {
-		this.run(0.0);
+		this.run(kStop);
 	}
 	
 	public void setFeederForward() {
-		feeder.set(-1.0);
+		feeder.set(kFullSpeed * -1);
 	}
 	public void setFeederReverse() {
-		feeder.set(1.0);
+		feeder.set(kFullSpeed * 1);
 	}
 	
 	public void stopFeeder() {
-		feeder.set(0.0);
+		feeder.set(kStop);
 	}
 	
 	public void moveUp() {

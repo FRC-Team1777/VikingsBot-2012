@@ -9,6 +9,7 @@ package vikingrobotics.commands.shooter;
 
 import vikingrobotics.misc.Constants;
 import vikingrobotics.misc.Debug;
+import vikingrobotics.misc.Utils;
 import vikingrobotics.commands.CommandBase;
 
 public class ShooterRun extends CommandBase implements Constants {
@@ -48,6 +49,13 @@ public class ShooterRun extends CommandBase implements Constants {
 			 */
 			else {
 				speed = oi.getJoystick().getJoystickThrottle(kJoystickAxisThrottle);
+			}
+			/*
+			 * If DigitalInput for Precise Throttle is on, make lowest and highest throttle values
+			 * to 0.2 and 0.5 respectively. Instead of 0.0 and 1.0
+			 */
+			if(oi.getDS().getDS().getDigitalIn(kDSDigitalInputPreciseThrottle)) {
+				speed = Utils.scaleBetween(speed, 0.2, 0.5);
 			}
 		}
 		shooter.run(this.speed);

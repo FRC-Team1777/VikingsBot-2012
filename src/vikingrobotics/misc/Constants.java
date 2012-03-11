@@ -123,11 +123,11 @@ public interface Constants {
 	
 	// Driver Station Digital Inputs
 	public static final int kDSDigitalInputShooterOnJ2 = 1;
-	public static final int kDSDigitalInputShooterAI1 = 2;
+	public static final int kDSDigitalInputPreciseThrottle = 2;
 	public static final int kDSDigitalInputArcadeDrive = 3;
 	public static final int kDSDigitalInputDisableDrive = 4;
 	public static final int kDSDigitalInputSlowDrive = 5;
-	public static final int kDSDigitalInputPreciseThrottle = 6;
+	public static final int kDSDigitalInput6 = 6;
 	public static final int kDSDigitalInput7 = 7;
 	public static final int kDSDigitalInputAutonomous = 8;
 	

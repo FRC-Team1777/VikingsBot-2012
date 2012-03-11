@@ -14,27 +14,18 @@ import vikingrobotics.commands.CommandBase;
 public class ArmUnlatch extends CommandBase {
 
 	private boolean hasFinished = false;
-	private boolean hasTimeout = false;
 	private double timeout;
 	
-	public ArmUnlatch() {
+	public ArmUnlatch(double timeout) {
 		super("ArmUnlatch");
 		requires(arm);
-	}
-	
-	public ArmUnlatch(double timeout) {
-		this();
-		this.hasTimeout = true;
 		this.timeout = timeout;
 	}
 
 	protected void initialize() {
 		hasFinished = false;
-		Debug.print("[ArmUnlatch] initialize");
-		if (hasTimeout) {
-			Debug.print("\tTimeout: " + timeout);
-			setTimeout(timeout);
-		}
+		setTimeout(timeout);
+		Debug.print("[" + this.getName() + "] Timeout: " + timeout);
 		Debug.print("\tTimeStarted: " + Utils.roundDecimals(timeSinceInitialized(), 5));
 		if (!arm.getSensorExtracted()) {
 			hasFinished = true;
@@ -51,11 +42,13 @@ public class ArmUnlatch extends CommandBase {
 	}
 
 	protected void end() {
+		Debug.print("\tSensorLatch: " + arm.getSensorLatch());
 		Debug.println("\tTimeEnded: " + Utils.roundDecimals(timeSinceInitialized(), 5));
 		arm.stopLatch();
 	}
 
 	protected void interrupted() {
+		Debug.print("\tSensorLatch: " + arm.getSensorLatch());
 		Debug.print("\tTimeEnded: " + Utils.roundDecimals(timeSinceInitialized(), 5));
 		Debug.println("\t[interrupted] " + getName());
 		arm.stopLatch();

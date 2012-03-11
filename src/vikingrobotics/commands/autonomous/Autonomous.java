@@ -40,7 +40,7 @@ public class Autonomous extends CommandGroup implements Constants {
 	
 	public Command getAutonCommdand() {
 		autonChooser = new SendableChooser();
-		autonChooser.addDefault("Auton0", new WaitCommand(1.0));
+		autonChooser.addDefault("Auton0", new WaitCommand(1));
 		autonChooser.addObject("Auton1", new Auton1());
 		autonChooser.addObject("Auton2", new Auton2());
 		autonChooser.addObject("Auton3", new Auton3());

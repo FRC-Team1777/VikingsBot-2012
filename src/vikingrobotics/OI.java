@@ -7,11 +7,7 @@
 
 package vikingrobotics;
 
-import vikingrobotics.commands.arm.ArmExtract;
-import vikingrobotics.commands.arm.ArmLatch;
-import vikingrobotics.commands.arm.ArmRetract;
 import vikingrobotics.commands.arm.ArmRun;
-import vikingrobotics.commands.arm.ArmUnlatch;
 import vikingrobotics.commands.grabber.GrabberReverse;
 import vikingrobotics.commands.grabber.GrabberRun;
 import vikingrobotics.commands.shooter.ShooterFeed;
@@ -19,21 +15,32 @@ import vikingrobotics.commands.shooter.ShooterMove;
 import vikingrobotics.commands.shooter.ShooterRun;
 import vikingrobotics.commands.shooter.ShooterStop;
 import vikingrobotics.misc.Constants;
+import vikingrobotics.misc.Controller;
 import vikingrobotics.misc.Debug;
 import vikingrobotics.misc.Driverstation;
-import vikingrobotics.misc.Gamepad;
 import vikingrobotics.misc.RobotMap;
+import edu.wpi.first.wpilibj.KinectStick;
 import edu.wpi.first.wpilibj.buttons.InternalButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+/**
+ * The operator interface class ties the commands that have been implemented
+ * to the physical controls of the user. This allows you to bind the same
+ * command that executes autonomous to a button. It also reveals the joystick as
+ * used by the DriveWithJoystick command.
+ * 
+ * @author Neal
+ */
 public class OI implements Constants {
 	
 	private static OI instance = null;
 	
-	private Gamepad gamepad;
-	private Gamepad joystick;
-	private Gamepad joystick2;
+	private Controller gamepad;
+	private Controller joystick;
+	private Controller joystick2;
+	private KinectStick leftArm;
+	private KinectStick rightArm;
 	private Driverstation m_ds;
 	
 	// Non-physical buttons used with SmartDashboard
@@ -43,53 +50,41 @@ public class OI implements Constants {
 	private InternalButton buttonFeedBall = new InternalButton();
 	private InternalButton buttonGrabberRun = new InternalButton();
 	private InternalButton buttonGrabberStop = new InternalButton();
-	private InternalButton buttonBalanceOnBridge = new InternalButton();
-	private InternalButton buttonShooterMove = new InternalButton();
-	private InternalButton buttonShooterMove2 = new InternalButton();
 	private InternalButton buttonShooterRun = new InternalButton();
-	private InternalButton buttonShooterRun00 = new InternalButton();
 	private InternalButton buttonShooterRun02 = new InternalButton();
 	private InternalButton buttonShooterRun04 = new InternalButton();
 	private InternalButton buttonShooterRun06 = new InternalButton();
 	private InternalButton buttonShooterRun08 = new InternalButton();
 	private InternalButton buttonShooterRun10 = new InternalButton();
 	private InternalButton buttonShooterStop = new InternalButton();	
-	
+
 	public OI() {
 		m_ds = new Driverstation();
-		if(getDS().getDS().getTeamNumber() != kTeamNumber) Debug.println("[ERROR] Team number not "+ kTeamNumber +" on the Driver Station!");
+		if(getDS().getDS().getTeamNumber() != kTeamNumber)
+			Debug.println("[ERROR] Team number not "+ kTeamNumber +" on the Driver Station!");
 		
-		gamepad = new Gamepad(RobotMap.kJoystick1);
-		joystick = new Gamepad(RobotMap.kJoystick2);
-		joystick2 = new Gamepad(RobotMap.kJoystick3);
+		gamepad = new Controller(RobotMap.kJoystick1);
+		joystick = new Controller(RobotMap.kJoystick2);
+		joystick2 = new Controller(RobotMap.kJoystick3);
+		leftArm = new KinectStick(1);
+		rightArm = new KinectStick(2);
 		
 		// Arm buttons
 		new JoystickButton(gamepad, kGamepadButtonLB).whenPressed(new ArmRun());
 		new JoystickButton(joystick, kJoystickButtonThumbBottomRight).whenPressed(new ArmRun());
-		new JoystickButton(joystick2, 1).whenPressed(new ArmRun());
-		new JoystickButton(joystick2, 2).whenPressed(new ArmExtract(kArmSpeed, 3.5));
-		new JoystickButton(joystick2, 3).whenPressed(new ArmRetract(kArmSpeed, 2.0));
-		new JoystickButton(joystick2, 4).whenPressed(new ArmExtract(kArmSlowSpeed, 0.17));
-		new JoystickButton(joystick2, 5).whileHeld(new ArmLatch());
-		new JoystickButton(joystick2, 6).whileHeld(new ArmUnlatch());
 		SmartDashboard.putData("ArmRun", buttonArmRun);
 		buttonArmRun.whenPressed(new ArmRun());
 		
 		// Shooter angler buttons
 		new JoystickButton(joystick, kJoystickButtonThumbTopLeft).whileHeld(new ShooterMove(kShooterUp));
 		new JoystickButton(joystick, kJoystickButtonThumbBottomLeft).whileHeld(new ShooterMove(kShooterDown));
-		new JoystickButton(joystick, kJoystickButtonTopLeft).whileHeld(new ShooterMove());
-		new JoystickButton(gamepad, kGamepadButtonBack).whileHeld(new ShooterMove());
 		SmartDashboard.putData("ShooterUp", buttonShooterUp);
 		SmartDashboard.putData("ShooterDn", buttonShooterDn);
-		SmartDashboard.putData("ShooterMove", buttonShooterMove);
 		buttonShooterUp.whileHeld(new ShooterMove(kShooterUp));
 		buttonShooterDn.whileHeld(new ShooterMove(kShooterDown));
-		buttonShooterMove.whenPressed(new ShooterMove());
 		
 		// Feeder buttons
 		new JoystickButton(gamepad, kGamepadButtonA).whenPressed(new ShooterFeed(kTimeFeedOneBall));
-		new JoystickButton(joystick, kJoystickButtonTrigger).whenPressed(new ShooterFeed(kTimeFeedOneBall));
 		SmartDashboard.putData("FeedBall", buttonFeedBall);
 		buttonFeedBall.whenPressed(new ShooterFeed(kTimeFeedOneBall, kShooterForceFeed));
 		
@@ -97,10 +92,10 @@ public class OI implements Constants {
 		new JoystickButton(gamepad, kGamepadButtonY).whenPressed(new ShooterRun(0.384));
 		new JoystickButton(gamepad, kGamepadButtonX).whenPressed(new ShooterRun(0.305));
 		new JoystickButton(gamepad, kGamepadButtonStart).whenPressed(new ShooterStop());
-		new JoystickButton(joystick2, kJoystick2ButtonBottomLeft).whenPressed(new ShooterRun());
-		new JoystickButton(joystick2, kJoystick2ButtonBottomRight).whenPressed(new ShooterStop());
 		new JoystickButton(joystick, kJoystickButtonBottomLeft).whenPressed(new ShooterRun());
 		new JoystickButton(joystick, kJoystickButtonBottomRight).whenPressed(new ShooterStop());
+		new JoystickButton(joystick2, kJoystick2ButtonBottomLeft).whenPressed(new ShooterRun());
+		new JoystickButton(joystick2, kJoystick2ButtonBottomRight).whenPressed(new ShooterStop());
 		SmartDashboard.putData("ShooterRun", buttonShooterRun);
 		SmartDashboard.putData("ShooterRun02", buttonShooterRun02);
 		SmartDashboard.putData("ShooterRun04", buttonShooterRun04);
@@ -134,19 +129,19 @@ public class OI implements Constants {
 		return instance;
 	}
 
-	public Gamepad getGamePad() {
+	public Controller getGamePad() {
 		return gamepad;
 	}
 
-	public Gamepad getJoystick() {
+	public Controller getJoystick() {
 		return joystick;
 	}
 
-	public Gamepad getJoystick2() {
+	public Controller getJoystick2() {
 		return joystick2;
 	}
 
-	public Gamepad getController(int controller) {
+	public Controller getController(int controller) {
 		switch (controller) {
 			case 1:	return gamepad;
 			case 2:	return joystick;
